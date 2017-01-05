@@ -1,0 +1,111 @@
+body {
+  color: #222;
+  background-color: #f4f4f4;
+  margin: 0px;
+}
+
+.main-menu {
+  background-color: #8a8a8a;
+}
+
+.ui.container {
+  width: 80%;
+  margin: 0 auto;
+  justify-content: center;
+  border-radius: 0px;
+}
+
+.ui.container.menu {
+  min-height: 60px;
+}
+
+.ui.container.body {
+  min-height: 90vh;
+}
+
+#spinner {
+  margin-top: -4px;
+  position: absolute;
+}
+
+.ui.icon.input>i.spinner.icon {
+  right: 35px;
+}
+
+.lyrics-body {
+  background-color: #c6c6f3;
+  display: flex;
+  padding: 30px;
+}
+
+.ui.centered.padded.grid, .wide.column>div {
+  height: 100%;
+}
+
+.lyrics {
+  text-align: center;
+  max-width: 60%;
+  padding-left: 100px;
+}
+
+.ui.vertical.divider:after, .ui.vertical.divider:before {
+  height: 100%;
+}
+
+.ui.vertical.divider {
+  left: 75%!important;
+}
+
+#body-loader {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.halogen-loader {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.recent-tracks .halogen-loader {
+  height: 96%;
+  width: 92%;
+  margin-top: 2px;
+}
+
+.now-playing .halogen-loader {
+  display: inline-block;
+  right: 30px;
+}
+
+.recent-tracks .list.item .ui.list {
+  padding: 0 0 0 5px!important;
+}
+
+.recent-tracks a.item:hover {
+  background-color: #ececec;
+}
+
+.now-playing .np-item {
+  background-color: #fffadd;
+}
+
+.recent-tracks .ui.attached.segment {
+  min-height: 470px;
+}
+
+.recent-tracks .content.list.item {
+  max-width: 285px;
+}
+
+.main-menu .right.menu .logout-btn {
+  padding: 0 33px;
+}
