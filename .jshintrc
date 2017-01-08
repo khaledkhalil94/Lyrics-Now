@@ -3,5 +3,8 @@
   "unused": true,
   "esversion": 6,
   "node": true,
-  "asi": true
+  "asi": true,
+  "globals": {
+    "localStorage": false
+  }
 }
