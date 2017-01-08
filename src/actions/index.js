@@ -1,36 +1,51 @@
 import fetch from 'isomorphic-fetch'
-import { searchUserSucc, requestUser, searchUserFail, nowPlaying,
-   getURL, getRecentTracks, removeUserr, requestRecentTracks } from './actionCreator'
+import { infoURL, recentTracksURL, lyricsURL } from '../constants'
+import * as action from './actionCreator'
 
 
 export const searchForUser = (username, remember=false) => (dispatch) => {
-  dispatch(requestUser())
-  return fetch(getURL('user.getInfo', username))
+  dispatch(action.requestUser())
+  return fetch(infoURL(username))
   .then(res => res.json())
   .then(res => {
-    if(res.error && res.error === 6) dispatch(searchUserFail())
+    if(res.error && res.error === 6) dispatch(action.searchUserFail())
     else {
-      dispatch(searchUserSucc(res.user))
+      dispatch(action.searchUserSucc(res.user))
       if(remember) localStorage.setItem('user', res.user.name)
-      dispatch(requestRecentTracks())
-      getTracks(res.user.name, dispatch)
+      dispatch(action.requestRecentTracks())
+      dispatch(checkTracks(username))
     }
   })
 }
 
-const getTracks = (username, dispatch) => {
-  setTimeout(()=> {
-    return fetch(getURL('user.getRecentTracks', username))
-    .then(res => res.json())
-    .then(res => {
-      const tracks = res.recenttracks.track
-      if (tracks[0]['@attr'] && tracks[0]['@attr'].nowplaying) dispatch(nowPlaying(tracks[0]))
-      dispatch(getRecentTracks(tracks))
-    })
-  }, 1)
+export const checkTracks = (username) => (dispatch, getState) => {
+  return fetch(recentTracksURL(username))
+  .then(res => res.json())
+  .then(res => {
+    const tracks = res.recenttracks.track
+    const { nowPlaying } = getState()
+    dispatch(action.getRecentTracks(tracks))
+    // if there's a track being played atm
+    if (tracks.length === 11) {
+      const track = tracks[0]
+      if(!nowPlaying.isNowPlaying || (nowPlaying.track.mbid !== track.mbid)) {
+        dispatch(action.startNowPlaying(track))
+        dispatch(action.requestLyrics())
+        dispatch(getLyrics(track))
+      }
+    } else if(nowPlaying.isNowPlaying) dispatch(action.stopNowPlaying())
+  })
+}
+
+const getLyrics = (track) => (dispatch) => {
+  return fetch(lyricsURL(track))
+  .then(res => res.json())
+  .then(res => {
+    if(res.err == 'none') dispatch(action.displayLyrics(res.lyric))
+  })
 }
 
 export const removeUser = () => (dispatch) => {
   localStorage.removeItem('user')
-  dispatch(removeUserr())
+  dispatch(action.removeUserr())
 }

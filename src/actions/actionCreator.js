@@ -1,50 +1,71 @@
-const api_key = 'ef8a2cb943728b1ac275b43c9fb095ca'
+import * as types from '../constants'
 
 export function requestUser(){
   return {
-    type: 'START_USER_SEARCH'
+    type: types.START_USER_SEARCH
   }
 }
 
 export function searchUserSucc(user) {
   return {
-    type: 'SEARCH_USER_SUCCESS',
+    type: types.SEARCH_USER_SUCCESS,
     user
   }
 }
 
 export function searchUserFail() {
   return {
-    type: 'SEARCH_USER_FAIL'
+    type: types.SEARCH_USER_FAIL
   }
 }
 
 export function removeUserr() {
   return {
-    type: 'REMOVE_USER'
+    type: types.REMOVE_USER
   }
 }
 
 export function requestRecentTracks(){
   return {
-    type: 'REQ_RECENT_TRACKS'
+    type: types.REQ_RECENT_TRACKS
+  }
+}
+
+export function refreshRecentTracks(){
+  return {
+    type: types.REFRESH_RECENT_TRACKS
   }
 }
 
 export function getRecentTracks(tracks){
   return {
-    type: 'GET_RECENT_TRACKS',
+    type: types.GET_RECENT_TRACKS,
     tracks
   }
 }
 
-export function nowPlaying(track){
+export function startNowPlaying(track){
   return {
-    type: 'NOW_PLAYING',
+    type: types.NOW_PLAYING_START,
     track
   }
 }
 
-export function getURL(method, username, apiKey=api_key){
-  return `http://ws.audioscrobbler.com/2.0/?user=${username}&method=${method}&api_key=${apiKey}&format=json&nowplaying=true&limit=10`
+export function stopNowPlaying(){
+  return {
+    type: types.NOW_PLAYING_STOP
+  }
+}
+
+export function requestLyrics(){
+  return {
+    type: types.REQ_LYRICS
+  }
+}
+
+export function displayLyrics(lyrics){
+  return {
+    type: types.DISPLAY_LYRICS,
+    lyrics
+  }
 }
