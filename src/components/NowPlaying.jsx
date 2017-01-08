@@ -27,4 +27,8 @@ class NowPlaying extends Component {
   }
 }
 
+NowPlaying.propTypes = {
+  track: PropTypes.object.isRequired
+}
+
 export default NowPlaying;

@@ -1,12 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Menu, Input, Icon } from 'semantic-ui-react'
 
-export default class Bar extends Component {
-  static propTypes = {
-    search: PropTypes.func.isRequired,
-    loading: PropTypes.bool,
-    err: PropTypes.bool
-  }
+class Bar extends Component {
 
   constructor(props) {
     super(props);
@@ -37,3 +32,11 @@ export default class Bar extends Component {
     )
   }
 }
+
+Bar.propTypes = {
+  search: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  err: PropTypes.bool
+}
+
+export default Bar

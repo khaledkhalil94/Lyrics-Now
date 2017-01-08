@@ -4,21 +4,31 @@ import Bar from './common/header/HeadBar'
 import BarLogged from './common/header/HeadBarLogged'
 import RecentTracks from './common/RecentTracks'
 import LBody from './common/lyricsbody'
-import NowPlaying from './NowPlaying'
 import { Segment, Divider, Grid } from 'semantic-ui-react'
-import { searchForUser, nowPlaying, removeUser } from './../actions'
+import { searchForUser, nowPlaying, removeUser, checkTracks } from './../actions'
+import { refreshRecentTracks } from './../actions/actionCreator'
 import Halogen from 'halogen'
 
 class App extends Component {
   constructor(){
     super()
     this.state = { user: {}, isNowPlaying: false }
+    this.refresh = this.refresh.bind(this)
   }
 
   componentWillMount() {
-    const { searchUser } = this.props
+    const { searchUser, checkTracks } = this.props
     let username = localStorage.getItem('user')
     if(username) searchUser(username)
+    setInterval(()=> {
+      if(this.state.user.name) checkTracks(username)
+    }, 10000)
+  }
+
+  refresh(username){
+    const { checkTracks, requestRTracks } = this.props
+    requestRTracks()
+    checkTracks(username)
   }
 
   componentWillReceiveProps({user, isNowPlaying}) {
@@ -28,16 +38,15 @@ class App extends Component {
   }
 
   render () {
-    const { searchUser, recentTracks, removeUser, isFetching, track } = this.props
+    const { searchUser, removeUser } = this.props
     const { isLoading, userErr } = this.props.user
-    const { user, isNowPlaying } = this.state
+    const { user } = this.state
     const isUser= Boolean(user.name)
-
     return (
       <div>
         <div className='main-menu'>
           {isUser
-          ? <BarLogged user={user} removeUser={ removeUser } />
+          ? <BarLogged user={user} removeUser={ removeUser } refresh={ this.refresh } />
           : <Bar loading={isLoading} err={userErr} search={searchUser} /> }
         </div>
         <Segment disabled={false} className='container body'>
@@ -45,13 +54,12 @@ class App extends Component {
           <Grid padded centered>
             <Grid.Row centered>
               <Grid.Column width={12}>
-                  <LBody />
+                  {this.state.isNowPlaying && <LBody />}
               </Grid.Column>
               <Divider vertical></Divider>
               <Grid.Column width={4}>
                 <div className='history'>
-                  {isNowPlaying && <NowPlaying track={track} />}
-                  <RecentTracks isNowPlaying={isNowPlaying} tracks={recentTracks} isFetching={isFetching} />
+                  <RecentTracks />
                 </div>
               </Grid.Column>
             </Grid.Row>
@@ -62,18 +70,19 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ user, tracks, nowPlaying}){
-  const { recentTracks, isFetching }  = tracks
-  const { isNowPlaying, track } = nowPlaying
+function mapStateToProps({ user, nowPlaying}){
+  const { isNowPlaying } = nowPlaying
 
-  return { user, recentTracks, isFetching, isNowPlaying, track }
+  return { user, isNowPlaying }
 }
 
 function mapDispatchToProps(dispatch){
   return {
     searchUser: (e, m) => dispatch(searchForUser(e, m)),
     removeUser: ()     => dispatch(removeUser()),
-    nowPlaying: (e)    => dispatch(nowPlaying(e))
+    nowPlaying: (e)    => dispatch(nowPlaying(e)),
+    checkTracks: (e)   => dispatch(checkTracks(e)),
+    requestRTracks: () => dispatch(refreshRecentTracks())
   }
 }
 

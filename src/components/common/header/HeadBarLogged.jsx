@@ -4,7 +4,7 @@ import Halogen from 'halogen'
 import {DEF_IMG} from '../../../constants'
 
 //<Menu.Item id='spinner'><Halogen.ScaleLoader color='rgb(145, 255, 241)' /></Menu.Item>
-const Bar = ({user, removeUser}) => (
+const Bar = ({user, removeUser, refresh}) => (
   <Menu stackable borderless inverted className='grey container'>
     <Menu.Item as='a' href={user.url}>
       <img src={user.image[2]['#text'] ? user.image[2]['#text'] : DEF_IMG} alt='' />
@@ -13,6 +13,7 @@ const Bar = ({user, removeUser}) => (
     {false && <Menu.Item id='spinner' icon={<Icon name='spinner loading' size='large' />} />}
 
     <Menu.Menu position='right'>
+      <Menu.Item className='logout-btn' as='a' icon='refresh' title='Refresh' onClick={()=> refresh(user.name)} />
       <Menu.Item className='logout-btn' as='a' icon='log out' title='Logout' onClick={()=> removeUser()} />
     </Menu.Menu>
   </Menu>
