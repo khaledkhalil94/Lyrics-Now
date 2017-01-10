@@ -2,6 +2,20 @@ import fetch from 'isomorphic-fetch'
 import { infoURL, recentTracksURL, lyricsURL } from '../constants'
 import * as action from './actionCreator'
 
+export const nextPage = () => (dispatch, getState) => {
+  dispatch(action.requestRecentTracks())
+  const { nowPlaying, user } = getState()
+  dispatch(action.nextPage(nowPlaying.page))
+  dispatch(checkTracks(user.user.name))
+}
+
+export const prevPage = () => (dispatch, getState) => {
+  const { nowPlaying, user } = getState()
+  if(nowPlaying.page <= 1) return
+  dispatch(action.requestRecentTracks())
+  dispatch(action.prevPage(nowPlaying.page))
+  dispatch(checkTracks(user.user.name))
+}
 
 export const switchLyrics = (track) => (dispatch, getState) => {
   const { lyricsDisplay } = getState()
@@ -15,7 +29,6 @@ export const switchLyrics = (track) => (dispatch, getState) => {
     })
 }
 
-
 const getLyrics = (track) => (dispatch) => {
   return fetch(lyricsURL(track))
   .then(res => res.json())
@@ -26,7 +39,8 @@ const getLyrics = (track) => (dispatch) => {
 }
 
 export const checkTracks = (username) => (dispatch, getState) => {
-  return fetch(recentTracksURL(username))
+  const { page } = getState().nowPlaying
+  return fetch(recentTracksURL(username, page))
   .then(res => res.json())
   .then(res => {
     const tracks = res.recenttracks.track
@@ -36,7 +50,7 @@ export const checkTracks = (username) => (dispatch, getState) => {
     // if there's a track being played atm
     if (tracks.length === 11) {
       const track = tracks[0]
-      if(!nowPlaying.isNowPlaying || (nowPlaying.track.mbid !== track.mbid)) {
+      if(!nowPlaying.isNowPlaying || (nowPlaying.track.name !== track.name)) {
         dispatch(action.startNowPlaying(track))
         dispatch(action.requestLyrics())
         dispatch(getLyrics(track))

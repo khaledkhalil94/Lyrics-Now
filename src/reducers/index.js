@@ -2,7 +2,14 @@
 import { combineReducers } from 'redux'
 import * as types from '../constants'
 
-const user = (state = {}, action) => {
+const initialState = {
+  user: {},
+  tracks: { recentTracks: [] },
+  nowPlaying: { track: {}, isNowPlaying: false, isHidden: false, page: 1 },
+  lyricsDisplay: { track: {}, lyrics: null, isFetching: false }
+}
+
+const user = (state = initialState.user, action) => {
   switch (action.type) {
 
     case types.START_USER_SEARCH:
@@ -23,7 +30,7 @@ const user = (state = {}, action) => {
   }
 }
 
-const tracks = (state = { recentTracks: [] }, action) => {
+const tracks = (state = initialState.tracks, action) => {
   switch (action.type) {
 
     case types.REQ_RECENT_TRACKS:
@@ -41,7 +48,7 @@ const tracks = (state = { recentTracks: [] }, action) => {
   }
 }
 
-const nowPlaying = (state = { track: {}, isNowPlaying: false }, action) => {
+const nowPlaying = (state = initialState.nowPlaying, action) => {
   switch (action.type) {
 
     case types.NOW_PLAYING_START:
@@ -53,12 +60,24 @@ const nowPlaying = (state = { track: {}, isNowPlaying: false }, action) => {
     case types.REMOVE_USER:
       return {...state, track: {}, isNowPlaying: false}
 
+    case types.HIDE_MENU:
+      return {...state, isHidden: true}
+
+    case types.SHOW_MENU:
+      return {...state, isHidden: false}
+
+    case types.GET_NEXT_PAGE:
+      return {...state, page: action.page}
+
+    case types.GET_PREV_PAGE:
+      return {...state, page: action.page}
+
     default:
       return state
   }
 }
 
-const lyricsDisplay = (state = { track: {}, lyrics: null, isFetching: false }, action) => {
+const lyricsDisplay = (state = initialState.lyricsDisplay, action) => {
   switch (action.type) {
 
     case types.REQ_LYRICS:

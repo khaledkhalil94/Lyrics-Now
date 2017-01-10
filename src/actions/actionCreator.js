@@ -84,4 +84,16 @@ export function lyricsNotFound(){
     type: types.LYRICS_NOT_FOUND,
     lyrics: types.NO_LYRICS
   }
+export function nextPage(page){
+  return {
+    type: types.GET_NEXT_PAGE,
+    page: ++page
+  }
+}
+
+export function prevPage(page){
+  return {
+    type: types.GET_PREV_PAGE,
+    page: --page
+  }
 }
