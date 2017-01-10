@@ -59,7 +59,7 @@ class App extends Component {
               <Divider vertical></Divider>
               <Grid.Column width={4}>
                 <div className='history'>
-                  <RecentTracks />
+                  <RecentTracks switchLyrics={this.switchLyrics} />
                 </div>
               </Grid.Column>
             </Grid.Row>
