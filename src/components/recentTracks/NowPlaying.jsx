@@ -32,9 +32,9 @@ class NowPlaying extends Component {
         <Segment className='np-item' attached>
           <List divided relaxed verticalAlign='middle' size='large' onClick={this.handleClick}>
             <List.Item as='a'>
-              <Image width={34} height={34} src={track.image[0]['#text'] || DEF_TRACK_PIC} />
+              <Image width={34} height={34} src={track.image[0]['#text'] || track.artist.image[0]['#text'] || DEF_TRACK_PIC} />
               <List.Content className='list item'>
-                <List><p>{track.artist['#text']} - {track.name}</p></List>
+                <List><p>{track.artist.name} - {track.name}</p></List>
               </List.Content>
             </List.Item>
           </List>

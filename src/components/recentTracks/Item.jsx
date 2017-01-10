@@ -8,9 +8,9 @@ export default class item extends Component {
     const { e, click, num } = this.props
     return (
       <Item as='a' ref={(i) => this.item = i} onClick={(item) => click(num, item)}>
-        <Image width={34} height={34} src={e.image[0]['#text'] || DEF_TRACK_PIC} />
+        <Image width={34} height={34} src={e.image[0]['#text'] || e.artist.image[0]['#text'] || DEF_TRACK_PIC} />
         <List.Content className='list item'>
-          <List><p><span id='artist'>{e.artist['#text']}</span> - <span>{e.name}</span></p></List>
+          <List><p><span id='artist'>{e.artist.name}</span> - <span>{e.name}</span></p></List>
         </List.Content>
       </Item>
     )

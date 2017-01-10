@@ -8,9 +8,9 @@ import Halogen from 'halogen'
 class LyricsBody extends Component {
   render () {
     const { track, lyrics, isFetching } = this.props
-    const img = track.image[2]['#text'] || DEF_TRACK_PIC
+    const img = track.image[2]['#text'] || track.artist.image[2]['#text'] || DEF_TRACK_PIC
     const { name } = track
-    const artist = track.artist['#text']
+    const artist = track.artist.name
 
     return (
       <div className='lyrics-body'>

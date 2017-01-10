@@ -26,11 +26,11 @@ export function infoURL(username, apiKey=api_key){
 }
 
 export function recentTracksURL(username, page, limit=10, apiKey=api_key){
-  return `http://ws.audioscrobbler.com/2.0/?user=${username}&method=user.getRecentTracks&api_key=${apiKey}&format=json&nowplaying=true&limit=${limit}&page=${page}`
+  return `http://ws.audioscrobbler.com/2.0/?user=${username}&method=user.getRecentTracks&api_key=${apiKey}&format=json&nowplaying=true&limit=${limit}&page=${page}&extended=1`
 }
 
 export function lyricsURL(track){
   const title = track.name.replace(/\s/g, '_')
-  const artist = track.artist['#text'].replace(/\s/g, '_')
+  const artist = track.artist.name.replace(/\s/g, '_')
   return `http://localhost:3001/?artist=${artist}&title=${title}`
 }
