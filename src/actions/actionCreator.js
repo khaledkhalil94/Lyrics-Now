@@ -63,9 +63,25 @@ export function requestLyrics(){
   }
 }
 
-export function displayLyrics(lyrics){
+export function displayLyrics(track, lyrics){
   return {
     type: types.DISPLAY_LYRICS,
-    lyrics
+    lyrics,
+    track
+  }
+}
+
+export function switchLyrics(track, lyrics){
+  return {
+    type: types.SWITCH_LYRICS,
+    lyrics: lyrics.length > 1 ? lyrics : types.NO_LYRICS,
+    track
+  }
+}
+
+export function lyricsNotFound(){
+  return {
+    type: types.LYRICS_NOT_FOUND,
+    lyrics: types.NO_LYRICS
   }
 }

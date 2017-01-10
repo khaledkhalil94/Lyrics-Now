@@ -41,20 +41,14 @@ const tracks = (state = { recentTracks: [] }, action) => {
   }
 }
 
-const nowPlaying = (state = { track: null, isNowPlaying: false, lyrics: null }, action) => {
+const nowPlaying = (state = { track: {}, isNowPlaying: false }, action) => {
   switch (action.type) {
-
-    case types.REQ_LYRICS:
-      return {...state, isFetching: true}
 
     case types.NOW_PLAYING_START:
       return {...state, track: action.track, isNowPlaying: true}
 
-    case types.DISPLAY_LYRICS:
-      return {...state, lyrics: action.lyrics, isFetching: false}
-
     case types.NOW_PLAYING_STOP:
-      return {...state, track: null, isNowPlaying: false, isFetching: false, lyrics: null}
+      return {...state, track: {}, isNowPlaying: false}
 
     case types.REMOVE_USER:
       return {...state, track: {}, isNowPlaying: false}
@@ -64,6 +58,27 @@ const nowPlaying = (state = { track: null, isNowPlaying: false, lyrics: null }, 
   }
 }
 
+const lyricsDisplay = (state = { track: {}, lyrics: null, isFetching: false }, action) => {
+  switch (action.type) {
+
+    case types.REQ_LYRICS:
+      return {...state, lyrics: null, isFetching: true}
+
+    case types.NOW_PLAYING_START:
+    return {...state, track: action.track, lyrics: null, isNowPlaying: true}
+
+    case types.DISPLAY_LYRICS:
+    case types.SWITCH_LYRICS:
+      return {...state, track: action.track, lyrics: action.lyrics, isFetching: false}
+
+    case types.LYRICS_NOT_FOUND:
+      return {...state, lyrics: action.lyrics, isFetching: false}
+
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
-  user, tracks, nowPlaying
+  user, tracks, nowPlaying, lyricsDisplay
 })
