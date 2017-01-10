@@ -5,13 +5,18 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
 const logger = createLogger({collapsed: true});
+const DEV_MODE = window.location.pathname.substr(1, 3) === 'dev'
 
 export default function configureStore(){
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const middleWares = [thunk, reduxImmutableStateInvariant()]
+
+  if(DEV_MODE) middleWares.push(logger)
+  const composeEnhancers = DEV_MODE ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose : compose
+
   return createStore(
     reducer,
     composeEnhancers(
-      applyMiddleware(thunk, reduxImmutableStateInvariant(), logger)
+      applyMiddleware(...middleWares)
     )
   );
 }
