@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Bar from './common/header/HeadBar'
-import BarLogged from './common/header/HeadBarLogged'
-import RecentTracks from './common/RecentTracks'
-import LBody from './common/lyricsbody'
-import { Segment, Divider, Grid } from 'semantic-ui-react'
-import { searchForUser, nowPlaying, removeUser, checkTracks } from './../actions'
+import Bar from './header/HeadBar'
+import BarLogged from './header/HeadBarLogged'
+import RecentTracks from './recentTracks/RecentTracks'
+import LBody from './lyricsBody/lyricsbody'
+import { Segment, Grid } from 'semantic-ui-react'
+import { searchForUser, nowPlaying, removeUser, checkTracks, showMenu } from './../actions'
 import { refreshRecentTracks } from './../actions/actionCreator'
 import Halogen from 'halogen'
 
@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   render () {
-    const { searchUser, removeUser } = this.props
+    const { searchUser, removeUser, track, isHidden, showMenu } = this.props
     const { isLoading, userErr } = this.props.user
     const { user } = this.state
     const isUser= Boolean(user.name)
@@ -46,22 +46,21 @@ class App extends Component {
       <div>
         <div className='main-menu'>
           {isUser
-          ? <BarLogged user={user} removeUser={ removeUser } refresh={ this.refresh } />
+          ? <BarLogged user={user} removeUser={removeUser} refresh={this.refresh} isHidden={isHidden} showMenu={showMenu} />
           : <Bar loading={isLoading} err={userErr} search={searchUser} /> }
         </div>
         <Segment disabled={false} className='container body'>
           {false && <Halogen.ScaleLoader id='body-loader' size="36px" color='#26A65B' />}
           <Grid padded centered>
             <Grid.Row centered>
-              <Grid.Column width={12}>
-                  {this.state.isNowPlaying && <LBody />}
+              <Grid.Column className='ui segment' width={isHidden ? 15 : 12}>
+                  {track.name && <LBody />}
               </Grid.Column>
-              <Divider vertical></Divider>
-              <Grid.Column width={4}>
+              { !isHidden && <Grid.Column width={4}>
                 <div className='history'>
                   <RecentTracks switchLyrics={this.switchLyrics} />
                 </div>
-              </Grid.Column>
+              </Grid.Column>}
             </Grid.Row>
           </Grid>
         </Segment>
@@ -70,16 +69,18 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ user, nowPlaying}){
-  const { isNowPlaying } = nowPlaying
+function mapStateToProps({ user, nowPlaying, lyricsDisplay}){
+  const { isNowPlaying, isHidden } = nowPlaying
+  const { track } = lyricsDisplay
 
-  return { user, isNowPlaying }
+  return { user, isNowPlaying, track, isHidden }
 }
 
 function mapDispatchToProps(dispatch){
   return {
     searchUser: (e, m) => dispatch(searchForUser(e, m)),
     removeUser: ()     => dispatch(removeUser()),
+    showMenu:   ()     => dispatch(showMenu()),
     nowPlaying: (e)    => dispatch(nowPlaying(e)),
     checkTracks: (e)   => dispatch(checkTracks(e)),
     requestRTracks: () => dispatch(refreshRecentTracks())

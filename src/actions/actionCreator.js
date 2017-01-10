@@ -84,6 +84,22 @@ export function lyricsNotFound(){
     type: types.LYRICS_NOT_FOUND,
     lyrics: types.NO_LYRICS
   }
+}
+
+export function hideMenu(){
+  return {
+    type: types.HIDE_MENU,
+    isHidden: true
+  }
+}
+
+export function showMenu(){
+  return {
+    type: types.SHOW_MENU,
+    isHidden: false
+  }
+}
+
 export function nextPage(page){
   return {
     type: types.GET_NEXT_PAGE,

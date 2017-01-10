@@ -2,6 +2,9 @@ import fetch from 'isomorphic-fetch'
 import { infoURL, recentTracksURL, lyricsURL } from '../constants'
 import * as action from './actionCreator'
 
+export const hideMenu = () => (dispatch) => dispatch(action.hideMenu())
+export const showMenu = () => (dispatch) => dispatch(action.showMenu())
+
 export const nextPage = () => (dispatch, getState) => {
   dispatch(action.requestRecentTracks())
   const { nowPlaying, user } = getState()
