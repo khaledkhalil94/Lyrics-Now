@@ -7,7 +7,12 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/1.1.34/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script type="text/javascript">
+      window.Element&&!Element.prototype.closest&&(Element.prototype.closest=function(e)
+      {var t,o=(this.document||this.ownerDocument).querySelectorAll(e),n=this;
+      do for(t=o.length;--t>=0&&o.item(t)!==n;);while(0>t&&(n=n.parentElement));return n});
+    </script>
   </head>
   <body>
     <div id="root"></div>
