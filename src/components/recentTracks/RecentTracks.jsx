@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import {connect} from 'react-redux'
-import { switchLyrics, hideMenu, nextPage, prevPage } from '../../actions'
+import { switchLyrics, nextPage, prevPage } from '../../actions'
 import { Header, Segment, List, Button, Icon } from 'semantic-ui-react'
 import Halogen from 'halogen'
 import NowPlaying from './NowPlaying'
@@ -50,13 +50,13 @@ class RecentTracks extends Component {
   }
 
   render () {
-    const { isFetching, isNowPlaying, switchLyrics, hideMenu, track, page } = this.props
+    const { isFetching, isNowPlaying, switchLyrics, track, page } = this.props
     const { recentTracks } = this.state
     const items = recentTracks.length > 1 ? recentTracks.map(this.mapItems) : ''
     const attached = isNowPlaying ? true : 'top'
     return (
       <div>
-        {isNowPlaying && <NowPlaying switchLyrics={switchLyrics} hideMenu={hideMenu} track={track} />}
+        {isNowPlaying && <NowPlaying switchLyrics={switchLyrics} track={track} />}
         <div className='recent-tracks'>
           <Header as='h5' attached={attached}>
             RECENT TRACKS {page > 1 && <small>({page})</small>}
@@ -88,7 +88,6 @@ function mapStateToProps({ tracks, nowPlaying, lyricsDisplay }){
 function mapDispatchToProps(dispatch){
   return {
     switchLyrics: (e) => dispatch(switchLyrics(e)),
-    hideMenu:     ()  => dispatch(hideMenu()),
     nextPage: () => dispatch(nextPage()),
     prevPage: () => dispatch(prevPage())
   }

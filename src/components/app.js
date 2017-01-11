@@ -5,7 +5,7 @@ import BarLogged from './header/HeadBarLogged'
 import RecentTracks from './recentTracks/RecentTracks'
 import LBody from './lyricsBody/lyricsbody'
 import { Segment, Grid } from 'semantic-ui-react'
-import { searchForUser, nowPlaying, removeUser, checkTracks, showMenu } from './../actions'
+import { searchForUser, nowPlaying, removeUser, checkTracks, showMenu, hideMenu } from './../actions'
 import { refreshRecentTracks } from './../actions/actionCreator'
 import Halogen from 'halogen'
 
@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   render () {
-    const { searchUser, removeUser, track, isHidden, showMenu } = this.props
+    const { searchUser, removeUser, track, isHidden, showMenu, hideMenu } = this.props
     const { isLoading, userErr } = this.props.user
     const { user } = this.state
     const isUser= Boolean(user.name)
@@ -46,7 +46,7 @@ class App extends Component {
       <div>
         <div className='main-menu'>
           {isUser
-          ? <BarLogged user={user} removeUser={removeUser} refresh={this.refresh} isHidden={isHidden} showMenu={showMenu} />
+          ? <BarLogged user={user} removeUser={removeUser} refresh={this.refresh} isHidden={isHidden} showMenu={showMenu} hideMenu={hideMenu} />
           : <Bar loading={isLoading} err={userErr} search={searchUser} /> }
         </div>
         <Segment disabled={false} className='container body'>
@@ -81,6 +81,7 @@ function mapDispatchToProps(dispatch){
     searchUser: (e, m) => dispatch(searchForUser(e, m)),
     removeUser: ()     => dispatch(removeUser()),
     showMenu:   ()     => dispatch(showMenu()),
+    hideMenu:   ()     => dispatch(hideMenu()),
     nowPlaying: (e)    => dispatch(nowPlaying(e)),
     checkTracks: (e)   => dispatch(checkTracks(e)),
     requestRTracks: () => dispatch(refreshRecentTracks())
