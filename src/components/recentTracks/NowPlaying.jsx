@@ -39,8 +39,7 @@ class NowPlaying extends Component {
 
 NowPlaying.propTypes = {
   track: PropTypes.object.isRequired,
-  switchLyrics: PropTypes.func.isRequired,
-  hideMenu: PropTypes.func.isRequired
+  switchLyrics: PropTypes.func.isRequired
 }
 
 export default NowPlaying

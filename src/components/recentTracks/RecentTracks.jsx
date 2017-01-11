@@ -46,7 +46,8 @@ class RecentTracks extends Component {
 
 
   mapItems(e, i){
-    return <Item e={e} key={i} num={i} click={this.handleClick} />
+    const { lyricTrack } = this.props
+    return <Item track={lyricTrack} e={e} key={i} num={i} click={this.handleClick} />
   }
 
   render () {
