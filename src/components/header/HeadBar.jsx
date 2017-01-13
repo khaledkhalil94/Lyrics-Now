@@ -24,7 +24,7 @@ class Bar extends Component {
     const iconLoading = loading ? <Icon loading name='spinner' /> : null
     const actions = { type: 'submit', color: 'teal', icon: 'arrow right', onClick: this.handleClick }
     return (
-      <Menu stackable borderless inverted className='grey container'>
+      <Menu stackable borderless inverted className='container'>
         <Menu.Item>
           <Input onChange={this.handleChange} error={err} icon={iconLoading} action={actions} className='icon' placeholder='Enter your username' />
         </Menu.Item>

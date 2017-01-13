@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { Item } from 'semantic-ui-react'
 import { List, Image } from 'semantic-ui-react'
-import {DEF_TRACK_PIC} from '../../constants'
+import { DEF_TRACK_PIC } from '../../constants'
 
 export default class item extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return (nextProps.e.name !== this.props.e.name)
+  }
 
   render(){
     const { e, click, num, track } = this.props
     const active = () => {
       const nodes = document.querySelectorAll('.recent-tracks a.active.item')
-      return (track.name === e.name && nodes.length === 0) ? ' active' : ''
+      return (track.name === e.name && nodes.length === 0) ? 'active' : ''
     }
     return (
       <Item as='a' className={active()} ref={(i) => this.item = i} onClick={(item) => click(num, item)}>

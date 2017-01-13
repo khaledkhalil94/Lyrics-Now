@@ -4,7 +4,7 @@ import {DEF_IMG} from '../../constants'
 
 const Bar = ({user, removeUser, refresh, isHidden, showMenu, hideMenu}) =>
 (
-  <Menu stackable borderless inverted className='grey container'>
+  <Menu stackable borderless inverted className='container'>
     <Menu.Item as='a' href={user.url}>
       <img src={user.image[2]['#text'] ? user.image[2]['#text'] : DEF_IMG} alt='' />
     </Menu.Item>

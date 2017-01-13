@@ -5,7 +5,11 @@ body {
 }
 
 .main-menu {
-  background-color: #8a8a8a;
+  background-color: #71787b;
+}
+
+.main-menu .ui.container.menu {
+  background-color: #3a3f41;
 }
 
 .ui.container {
@@ -20,7 +24,7 @@ body {
 }
 
 .ui.container.body {
-  min-height: 90vh;
+  min-height: calc(100vh - 60px);
 }
 
 #spinner {
@@ -33,7 +37,6 @@ body {
 }
 
 .lyrics-body {
-  background-color: #c6c6f3;
   display: flex;
   padding: 30px;
 }
@@ -45,25 +48,14 @@ body {
 .lyrics {
   text-align: center;
   width: 100%;
-  height: 500px;
+  height: 610px;
   overflow: auto;
-  height: 80%;
 }
 
 .lyrics p {
-  white-space: pre;
   width: 80%;
   margin: 0 auto;
-  background-color: #ffc2c2;
   font-size:20px;
-}
-
-.ui.vertical.divider:after, .ui.vertical.divider:before {
-  height: 100%;
-}
-
-.ui.vertical.divider {
-  left: 75%!important;
 }
 
 #body-loader {
@@ -73,6 +65,7 @@ body {
   align-items: center;
   z-index: 5;
   background: rgba(255, 255, 255, 0.82);
+  margin: auto;
 }
 
 .halogen-loader {
@@ -80,20 +73,27 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto;
   z-index: 5;
-  background: rgba(255, 255, 255, 0.82);
 }
 
 .recent-tracks .halogen-loader {
   height: 96%;
   width: 92%;
   margin-top: 2px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.lyrics .halogen-loader {
+  height: 72.6%;
+  width: 60%;
+  left: 30%;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.82);
 }
 
 .now-playing .halogen-loader {
-  display: inline-block;
-  right: 30px;
+  right: 25px;
 }
 
 .recent-tracks .list.item .ui.list {
@@ -104,16 +104,59 @@ body {
   background-color: #ececec;
 }
 
+.recent-tracks a.item.active {
+  background-color: #cacaca;
+}
+
 .now-playing .np-item {
   background-color: #fffadd;
 }
 
-.recent-tracks .ui.attached.segment {
+.twelve.wide.column.ui.segment {
+  height: 100%
+}
+
+.ui.large.divided.relaxed.middle.aligned.list {
+  margin-top: 0px;
+}
+
+.recent-tracks .ui.attached.segment.tracks {
   min-height: 470px;
 }
 
-.recent-tracks .content.list.item {
+.recent-tracks .content.list.item, .now-playing .content.list.item {
   max-width: 285px;
+}
+
+.now-playing .ui.top.attached.header {
+  display: flex;
+  align-items: center;
+}
+
+.now-playing .ui.top.attached.header p {
+  margin-bottom: 0px;
+}
+
+#now-playing-hide-btn {
+  font-size: 13px;
+}
+
+.song-info .song-details .songArtist {
+  font-size: 22px;
+  line-height: 25px;
+  margin-bottom: 6px;
+}
+
+.ui.attached {
+  border-color: #bdbdbd!important;
+}
+
+.ui.attached.tracks.segment {
+  border-bottom: none;
+}
+
+.song-info .song-details .songTitle {
+  font-size: 17px;
 }
 
 .main-menu .right.menu .logout-btn {

@@ -5,7 +5,7 @@ const Info = ({ img, artist, title }) =>
   <div className='song-info'>
     <img src={img} width='240px' alt='' />
     <div className='song-details'>
-      <span className='songArtist'>{artist}</span> - <span className='songTitle'>{title}</span>
+      <p className='songArtist'>{artist}</p><p className='songTitle'>{title}</p>
     </div>
   </div>
 )

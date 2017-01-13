@@ -49,11 +49,10 @@ class App extends Component {
           ? <BarLogged user={user} removeUser={removeUser} refresh={this.refresh} isHidden={isHidden} showMenu={showMenu} hideMenu={hideMenu} />
           : <Bar loading={isLoading} err={userErr} search={searchUser} /> }
         </div>
-        <Segment disabled={false} className='container body'>
-          {false && <Halogen.ScaleLoader id='body-loader' size="36px" color='#26A65B' />}
+        <Segment className='container body'>
           <Grid padded centered>
             <Grid.Row centered>
-              <Grid.Column className='ui segment' width={isHidden ? 15 : 12}>
+              <Grid.Column width={isHidden ? 15 : 12}>
                   {track.name && <LBody />}
               </Grid.Column>
               { !isHidden && <Grid.Column width={4}>
