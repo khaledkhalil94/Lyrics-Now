@@ -11,10 +11,11 @@ class LyricsBody extends Component {
     const img = track.image[2]['#text'] || track.artist.image[2]['#text'] || DEF_TRACK_PIC
     const { name } = track
     const artist = track.artist.name
+    const link = track.artist.url
 
     return (
       <div className='lyrics-body'>
-        <Info img={img} title={name} artist={artist} />
+        <Info img={img} title={name} artist={artist} link={link} />
         <div className='lyrics'>
           {isFetching && <Halogen.ScaleLoader className='halogen-loader' size="36px" color='#c7c7c7' />}
           <Lyrics lyrics={lyrics} />
