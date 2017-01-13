@@ -56,6 +56,9 @@ body {
   width: 80%;
   margin: 0 auto;
   font-size:20px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 #body-loader {
@@ -77,7 +80,7 @@ body {
 }
 
 .recent-tracks .halogen-loader {
-  height: 96%;
+  height: 100%;
   width: 92%;
   margin-top: 2px;
   margin: auto;
@@ -110,6 +113,8 @@ body {
 
 .now-playing .np-item {
   background-color: #fffadd;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .twelve.wide.column.ui.segment {
@@ -122,6 +127,8 @@ body {
 
 .recent-tracks .ui.attached.segment.tracks {
   min-height: 470px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .recent-tracks .content.list.item, .now-playing .content.list.item {
@@ -141,18 +148,33 @@ body {
   font-size: 13px;
 }
 
+.ui.bottom.attached.buttons {
+  margin-top: 0px;
+}
+
 .song-info .song-details .songArtist {
   font-size: 22px;
   line-height: 25px;
   margin-bottom: 6px;
+  display: inline-block;
+  margin-right: 5px;
 }
 
-.ui.attached {
-  border-color: #bdbdbd!important;
+.artist-lastfm-page {
+  display: none;
 }
 
-.ui.attached.tracks.segment {
-  border-bottom: none;
+.ui.icon.button, .ui.attached.header {
+  background-color: #71787b;
+  color: white;
+}
+
+.song-info:hover .artist-lastfm-page {
+  display: initial;
+}
+
+.song-info:hover .artist-lastfm-page>i {
+  font-weight: bold;
 }
 
 .song-info .song-details .songTitle {
@@ -162,6 +184,19 @@ body {
 .main-menu .right.menu .logout-btn {
   padding: 0 30px;
 }
+
+.ui.relaxed.list:not(.horizontal)>.item {
+  padding-bottom: .42857143em;
+  padding-top: .42857143em;
+  margin-left: -14px;
+  margin-right: -14px;
+  padding-left: 14px;
+}
+
+.now-playing .np-item .item .ui.list {
+  padding-top: 0px;
+}
+
 
 ::-webkit-scrollbar {
       width: 10px;
