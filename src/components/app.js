@@ -7,7 +7,6 @@ import LBody from './lyricsBody/lyricsbody'
 import { Segment, Grid } from 'semantic-ui-react'
 import { searchForUser, nowPlaying, removeUser, checkTracks, showMenu, hideMenu } from './../actions'
 import { refreshRecentTracks } from './../actions/actionCreator'
-import Halogen from 'halogen'
 
 class App extends Component {
   constructor(){
@@ -19,10 +18,12 @@ class App extends Component {
   componentWillMount() {
     const { searchUser, checkTracks } = this.props
     let username = localStorage.getItem('user')
-    if(username) searchUser(username)
-    setInterval(()=> {
-      if(this.state.user.name) checkTracks(username)
-    }, 10000)
+    if(username) {
+      searchUser(username)
+      setInterval(()=> {
+        if(this.state.user.name) checkTracks(username)
+      }, 10000)
+    }
   }
 
   refresh(username){
@@ -52,13 +53,11 @@ class App extends Component {
         <Segment className='container body'>
           <Grid padded centered>
             <Grid.Row centered>
-              <Grid.Column width={isHidden ? 15 : 12}>
-                  {track.name && <LBody />}
+              <Grid.Column id='main-body' width={isHidden ? 15 : 12}>
+                {isUser && track.name && <LBody />}
               </Grid.Column>
-              { !isHidden && <Grid.Column width={4}>
-                <div className='history'>
-                  <RecentTracks switchLyrics={this.switchLyrics} />
-                </div>
+              { !isHidden && <Grid.Column id='sidebar' width={4}>
+                <RecentTracks switchLyrics={this.switchLyrics} />
               </Grid.Column>}
             </Grid.Row>
           </Grid>
