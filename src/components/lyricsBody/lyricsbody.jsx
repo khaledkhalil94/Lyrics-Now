@@ -18,6 +18,7 @@ class LyricsBody extends Component {
         <Info img={img} title={name} artist={artist} link={link} />
         <div className='lyrics'>
           {isFetching && <Halogen.ScaleLoader className='halogen-loader' size="36px" color='#c7c7c7' />}
+          <div className='lyrics-overlay'></div>
           <Lyrics lyrics={lyrics} />
         </div>
       </div>
