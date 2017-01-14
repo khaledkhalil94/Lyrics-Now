@@ -24,7 +24,9 @@ body {
 }
 
 .ui.container.body {
-  min-height: 93vh;
+  min-height: calc(100vh - 60px);
+  border-top: none;
+  border-bottom: 0px;
 }
 
 #spinner {
@@ -38,35 +40,40 @@ body {
 
 .lyrics-body {
   display: flex;
-  padding: 30px;
+  padding: 20px;
 }
 
-.ui.centered.padded.grid, .wide.column>div {
+.ui.centered.padded.grid {
   height: 100%;
+  min-height: 87vh;
 }
 
 .lyrics {
   text-align: center;
   width: 100%;
+  max-width: 861px;
   overflow: auto;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .lyrics p {
-  height: 610px;
+  max-height: 690px;
   width: 80%;
   margin: 0 auto;
   font-size:20px;
   line-height: 1.6;
-  padding-bottom: 56px;
   white-space: pre-wrap;
   word-break: break-word;
 }
 
 .lyrics .lyrics-overlay {
-  width: calc(70% - 3vw);
+  width: 58%;
+  align-self: flex-end;
+  display: block;
   height: 100px;
   position: absolute;
-  bottom: 0px;
   background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 73%); /* FF3.6-15 */
   background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 73%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 73%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -169,8 +176,7 @@ body {
   font-size: 22px;
   line-height: 25px;
   margin-bottom: 6px;
-  display: inline-block;
-  margin-right: 5px;
+  display: inline;
 }
 
 .artist-lastfm-page {
@@ -185,11 +191,13 @@ body {
 }
 
 .song-info:hover .artist-lastfm-page {
-  display: initial;
+  display: inline-block;
+  margin-right: -2px;
 }
 
-.song-info:hover .artist-lastfm-page>i {
+.song-info:hover .artist-lastfm-page> i {
   font-weight: bold;
+  padding-left: 5px;
 }
 
 .song-info .song-details .songTitle {
@@ -242,6 +250,23 @@ body {
   background-color: white;
 }
 
+.footer {
+  display: flex;
+  color: #949494;
+}
+
+.footer span {
+  width: 50%;
+}
+
+.footer a {
+  color: inherit;
+}
+
+.footer i.github.icon {
+  margin-right: 0px;
+}
+
 @media (max-width: 1200px) {
   #sidebar {
     width: 40%!important;
@@ -267,7 +292,7 @@ body {
   }
 
   .ui.container.body {
-      min-height: 90vh;
+    min-height: 90vh;
   }
 
   .lyrics .lyrics-overlay {
@@ -279,11 +304,19 @@ body {
   #sidebar {
     display: none;
   }
+
   #main-body {
     width: 100%!important;
   }
+
   .lyrics .lyrics-overlay {
-    width: 90%!important;
+    width: calc(95% - 14px)!important
+  }
+}
+
+@media (max-width: 1000px) and (min-height: 825px) {
+  body {
+    overflow-y: hidden;
   }
 }
 
@@ -291,4 +324,20 @@ body {
   .ui.container.body {
     min-height: 80vh;
   }
+
+  #main-body, .ui.centered.padded.grid .centered.row {
+    padding: 0px;
+  }
+}
+
+#body-sign {
+  position: absolute;
+  background-color: #f4f4f4;
+  color: #a2a2a2;
+  font-family: sans-serif;
+  padding: 5px;
+  bottom: 43px;
+  left: -40px;
+  margin-bottom: 0px;
+  transform: rotate(90deg);
 }
