@@ -24,7 +24,7 @@ body {
 }
 
 .ui.container.body {
-  min-height: calc(100vh - 60px);
+  min-height: 93vh;
 }
 
 #spinner {
@@ -48,15 +48,16 @@ body {
 .lyrics {
   text-align: center;
   width: 100%;
-  height: 610px;
   overflow: auto;
 }
 
 .lyrics p {
+  height: 610px;
   width: 80%;
   margin: 0 auto;
   font-size:20px;
   line-height: 1.6;
+  padding-bottom: 56px;
   white-space: pre-wrap;
   word-break: break-word;
 }
@@ -81,10 +82,11 @@ body {
 
 .recent-tracks .halogen-loader {
   height: 100%;
-  width: 92%;
+  width: 100%;
   margin-top: 2px;
   margin: auto;
   background: rgba(255, 255, 255, 0.82);
+  right: 0px;
 }
 
 .lyrics .halogen-loader {
@@ -164,7 +166,9 @@ body {
   display: none;
 }
 
-.ui.icon.button, .ui.attached.header {
+.ui.icon.button, .ui.attached.header,
+.ui.teal.button:hover, .ui.teal.button:active,
+.ui.teal.button:focus {
   background-color: #71787b;
   color: white;
 }
@@ -199,8 +203,8 @@ body {
 
 
 ::-webkit-scrollbar {
-      width: 10px;
-} /* this targets the default scrollbar (compulsory) */
+  width: 10px;
+}
 
 ::-webkit-scrollbar-track {
   background-color: #e0e1e2;
@@ -208,7 +212,7 @@ body {
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
-} /* the new scrollbar will have a flat appearance with the set background color */
+}
 
 ::-webkit-scrollbar-thumb {
   background-color: #6b7579;
@@ -216,13 +220,11 @@ body {
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
-} /* this will style the thumb, ignoring the track */
+}
 
 ::-webkit-scrollbar-button {
   background-color: #a0a0a0;
   height: 0px;
-} /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+}
 
 ::-webkit-scrollbar-corner {
-  background-color: black;
-} /* if both the vertical and the horizontal bars appear, then perhaps the right bottom corner also needs to be styled */
