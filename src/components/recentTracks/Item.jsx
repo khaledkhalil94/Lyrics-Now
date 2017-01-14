@@ -6,10 +6,10 @@ import { DEF_TRACK_PIC } from '../../constants'
 export default class item extends Component {
 
   shouldComponentUpdate(nextProps) {
-    return (nextProps.e.name !== this.props.e.name)
+    return (nextProps.e.name !== this.props.e.name) || document.querySelectorAll('.recent-tracks a.active.item').length === 0
   }
 
-  render(){
+  render() {
     const { e, click, num, track } = this.props
     const active = () => {
       const nodes = document.querySelectorAll('.recent-tracks a.active.item')

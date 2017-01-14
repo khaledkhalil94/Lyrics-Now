@@ -5,6 +5,7 @@ import { Header, Segment, List, Button, Icon } from 'semantic-ui-react'
 import Halogen from 'halogen'
 import NowPlaying from './NowPlaying'
 import Item from './Item'
+import { removeActiveItems } from '../../constants'
 
 class RecentTracks extends Component {
   constructor(){
@@ -29,8 +30,7 @@ class RecentTracks extends Component {
   }
 
   handleClick(num, item){
-    const nodes = document.querySelector('.recent-tracks a.active.item')
-    if(nodes) nodes.className = 'item'
+    removeActiveItems()
     item.target.closest('.recent-tracks a.item').className = 'item active'
     const { switchLyrics } = this.props
     const clickedTrack = this.state.recentTracks[num]
@@ -40,8 +40,7 @@ class RecentTracks extends Component {
   pageChange(next){
     const { nextPage, prevPage } = this.props
     next ? nextPage() : prevPage()
-    const nodes = document.querySelector('.recent-tracks a.active.item')
-    if(nodes) nodes.className = 'item'
+    removeActiveItems()
   }
 
 
@@ -51,26 +50,26 @@ class RecentTracks extends Component {
   }
 
   render () {
-    const { isFetching, isNowPlaying, switchLyrics, track, page } = this.props
+    const { isFetching, isNowPlaying, switchLyrics, track, page, user } = this.props
     const { recentTracks } = this.state
     const items = recentTracks.length > 1 ? recentTracks.map(this.mapItems) : ''
     const attached = isNowPlaying ? true : 'top'
     return (
-      <div>
+      <div className='history'>
         {isNowPlaying && <NowPlaying switchLyrics={switchLyrics} track={track} />}
         <div className='recent-tracks'>
           <Header as='h5' attached={attached}>
             RECENT TRACKS {page > 1 && <small>({page})</small>}
           </Header>
           <Segment className='tracks' attached>
-            {isFetching && <Halogen.ScaleLoader className='halogen-loader' size="36px" color='#26A65B' />}
+            {isFetching && <Halogen.ScaleLoader className='halogen-loader' size="36px" color='#c7c7c7' />}
             <List divided relaxed verticalAlign='middle' size='large'>
               {items}
             </List>
           </Segment>
           <Button.Group attached='bottom'>
             <Button disabled={page <= 1} icon onClick={()=>this.pageChange(false)}><Icon name='left arrow' /></Button>
-            <Button icon onClick={()=>this.pageChange(true)}><Icon name='right arrow' /></Button>
+            <Button disabled={!user.user} icon onClick={()=>this.pageChange(true)}><Icon name='right arrow' /></Button>
           </Button.Group>
         </div>
       </div>
@@ -78,10 +77,10 @@ class RecentTracks extends Component {
   }
 }
 
-function mapStateToProps({ tracks, nowPlaying, lyricsDisplay }){
-  const [{ recentTracks, isFetching }, { isNowPlaying, track, page }]  = [tracks, nowPlaying, lyricsDisplay]
+function mapStateToProps({ user, tracks, nowPlaying, lyricsDisplay }){
+  const [{ recentTracks, isFetching }, { isNowPlaying, track, page }]  = [tracks, nowPlaying]
 
-  return { recentTracks, isFetching, isNowPlaying, track, page,
+  return { user, recentTracks, isFetching, isNowPlaying, track, page,
     lyricTrack: lyricsDisplay.track
    }
 }

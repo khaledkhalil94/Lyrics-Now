@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Header, Segment, List, Image } from 'semantic-ui-react'
 import Halogen from 'halogen'
-import {DEF_TRACK_PIC} from '../../constants'
+import { DEF_TRACK_PIC, removeActiveItems } from '../../constants'
 
 class NowPlaying extends Component {
   constructor(){
@@ -10,8 +10,17 @@ class NowPlaying extends Component {
   }
 
   handleClick(){
+    removeActiveItems()
     const { track, switchLyrics } = this.props
     switchLyrics(track)
+  }
+
+  componentWillMount() {
+    removeActiveItems()
+  }
+
+  componentWillUpdate(nextProps) {
+    if(nextProps.track.name !== this.props.track.name) removeActiveItems()
   }
 
   render () {
@@ -20,7 +29,7 @@ class NowPlaying extends Component {
       <div className='now-playing'>
         <Header as='h5' attached='top'>
           <p>Now Playing</p>
-          <Halogen.BeatLoader className='halogen-loader' size="6px" color='rgb(84, 135, 208)' />
+          <Halogen.BeatLoader className='now-playing halogen-loader' size="6px" color='#74dffd' />
         </Header>
         <Segment className='np-item' attached>
           <List divided relaxed verticalAlign='middle' size='large' onClick={this.handleClick}>

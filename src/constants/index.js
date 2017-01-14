@@ -34,3 +34,8 @@ export function lyricsURL(track){
   const artist = track.artist.name.replace(/\s/g, '_')
   return `http://localhost:3001/?artist=${artist}&title=${title}`
 }
+
+export function removeActiveItems(){
+  const nodes = document.querySelector('.recent-tracks a.active.item')
+  if(nodes) nodes.className = 'item'
+}
