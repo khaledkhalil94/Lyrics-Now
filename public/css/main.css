@@ -239,3 +239,56 @@ body {
 }
 
 ::-webkit-scrollbar-corner {
+  background-color: white;
+}
+
+@media (max-width: 1200px) {
+  #sidebar {
+    width: 40%!important;
+  }
+
+  .song-info {
+    display: none;
+  }
+
+  #main-body {
+    width: 60%!important;
+    left: 0px;
+  }
+
+  .lyrics-body {
+    display: flex;
+    padding: 0px;
+  }
+
+  .lyrics p {
+    width: 100%;
+    margin: 0px;
+  }
+
+  .ui.container.body {
+      min-height: 90vh;
+  }
+
+  .lyrics .lyrics-overlay {
+    width: 92%;
+  }
+}
+
+@media (max-width: 1000px) {
+  #sidebar {
+    display: none;
+  }
+  #main-body {
+    width: 100%!important;
+  }
+  .lyrics .lyrics-overlay {
+    width: 90%!important;
+  }
+}
+
+@media (max-width: 500px) {
+  .ui.container.body {
+    min-height: 80vh;
+  }
+}
