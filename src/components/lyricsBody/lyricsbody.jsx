@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component, PropTypes } from 'react'
 import {connect} from 'react-redux'
 import Lyrics from './lyricsContent'
 import Info from './Info'
@@ -30,6 +30,12 @@ function mapStateToProps({ lyricsDisplay }){
   const { track, lyrics, isFetching } = lyricsDisplay
 
   return { track, lyrics, isFetching }
+}
+
+LyricsBody.propTypes = {
+  track: PropTypes.object.isRequired,
+  lyrics: PropTypes.string,
+  isFetching: PropTypes.bool.isRequired
 }
 
 export default connect(mapStateToProps)(LyricsBody)

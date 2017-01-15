@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Menu, Icon } from 'semantic-ui-react'
-import {DEF_IMG} from '../../constants'
+import { DEF_IMG } from '../../constants'
 
 const Bar = ({user, removeUser, refresh, isHidden, showMenu, hideMenu}) =>
 (
@@ -23,7 +23,9 @@ const Bar = ({user, removeUser, refresh, isHidden, showMenu, hideMenu}) =>
 Bar.propTypes = {
   user: PropTypes.object.isRequired,
   removeUser: PropTypes.func.isRequired,
+  refresh: PropTypes.func.isRequired,
   showMenu: PropTypes.func.isRequired,
+  hideMenu: PropTypes.func.isRequired,
   isHidden: PropTypes.bool.isRequired
 }
 

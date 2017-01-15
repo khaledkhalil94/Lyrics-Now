@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Item } from 'semantic-ui-react'
 import { List, Image } from 'semantic-ui-react'
 import { DEF_TRACK_PIC } from '../../constants'
 
-export default class item extends Component {
+class item extends Component {
 
   shouldComponentUpdate(nextProps) {
     return (nextProps.e.name !== this.props.e.name) || document.querySelectorAll('.recent-tracks a.active.item').length === 0
@@ -25,3 +25,12 @@ export default class item extends Component {
     )
   }
 }
+
+item.propTypes = {
+  e: PropTypes.object.isRequired,
+  track: PropTypes.object.isRequired,
+  num: PropTypes.number.isRequired,
+  click: PropTypes.func.isRequired
+}
+
+export default item
