@@ -7,6 +7,7 @@ class Bar extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.onKey = this.onKey.bind(this)
     this.state = {value: ''}
   }
 
@@ -14,9 +15,17 @@ class Bar extends Component {
     this.setState({value: value})
   }
 
+  onKey(e){
+    if(e.keyCode === 13) this.handleClick()
+  }
+
   handleClick(){
     const { search } = this.props
-    search(this.state.value, true)
+    if(this.state.value.substr(0, 4) === '/dev'){
+      localStorage.setItem('enable_devtools', 'true')
+      window.location.replace('/')
+    }
+    else search(this.state.value, true)
   }
 
   render(){
@@ -26,7 +35,7 @@ class Bar extends Component {
     return (
       <Menu stackable borderless inverted className='container'>
         <Menu.Item>
-          <Input onChange={this.handleChange} error={err} icon={iconLoading} action={actions} className='icon' placeholder='Enter your lasfm username' />
+          <Input onChange={this.handleChange} error={err} icon={iconLoading} action={actions} onKeyDown={this.onKey} className='icon' placeholder='Enter your lasfm username' />
         </Menu.Item>
       </Menu>
     )
