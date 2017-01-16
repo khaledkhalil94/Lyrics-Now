@@ -6,6 +6,19 @@ import {DEF_TRACK_PIC} from '../../constants'
 import Halogen from 'halogen'
 
 class LyricsBody extends Component {
+  componentDidMount() {
+    const element = document.querySelector('.lyrics-body .lyrics')
+    const overlayElm = document.querySelector('.lyrics-overlay')
+    element.onscroll = () => {
+      if(50 + element.offsetHeight + element.scrollTop >= element.scrollHeight) {
+        let height = (element.scrollHeight - element.scrollTop - element.offsetHeight) * 2
+        overlayElm.style.height = `${height}px`
+      } else {
+        overlayElm.style.height = '100px'
+      }
+    }
+  }
+
   render () {
     const { track, lyrics, isFetching } = this.props
     const img = track.image[2]['#text'] || track.artist.image[2]['#text'] || DEF_TRACK_PIC
