@@ -6,13 +6,6 @@ import storeStock from './store/store';
 
 const store = storeStock();
 
-const path = window.location.pathname
-if(path !== '/'){
-  if((path.substr(1, 3) === 'dev')) localStorage.setItem('enable_devtools', 'true')
-  else localStorage.setItem('user', path.split('/')[1])
-  window.location.replace('/')
-}
-
 render(
   <Provider store={store}>
     <App />
