@@ -21,19 +21,18 @@ export const prevPage = () => (dispatch, getState) => {
 }
 
 export const switchLyrics = (track) => (dispatch, getState) => {
-  const { lyricsDisplay } = getState()
-  if((lyricsDisplay.track.name === track.name) || lyricsDisplay.isFetching) return
-
+  const { lyricsDisplay, user } = getState()
+  if(!track || (lyricsDisplay.track.name === track.name) || lyricsDisplay.isFetching) return
   dispatch(action.requestLyrics())
-  return fetch(lyricsURL(track))
+  return fetch(lyricsURL(track, user.user.name))
     .then(res => res.json())
     .then(res => {
       dispatch(action.switchLyrics(track, res.lyric))
     })
 }
 
-const getLyrics = (track) => (dispatch) => {
-  return fetch(lyricsURL(track))
+const getLyrics = (track, user) => (dispatch) => {
+  return fetch(lyricsURL(track, user))
   .then(res => res.json())
   .then(res => {
     if(res.err === 'OK') dispatch(action.displayLyrics(track, res.lyric))
@@ -56,11 +55,11 @@ export const checkTracks = (username) => (dispatch, getState) => {
       if(!nowPlaying.isNowPlaying || (nowPlaying.track.name !== track.name)) {
         dispatch(action.startNowPlaying(track))
         dispatch(action.requestLyrics())
-        dispatch(getLyrics(track))
+        dispatch(getLyrics(track, username))
       }
     } else {
       if(nowPlaying.isNowPlaying) dispatch(action.stopNowPlaying())
-      else if(!lyricsDisplay.lyrics) dispatch(switchLyrics(tracks[0]))
+      else if(!lyricsDisplay.lyrics) dispatch(switchLyrics(tracks[0], username))
     }
   })
 }
