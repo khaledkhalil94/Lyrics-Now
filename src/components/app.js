@@ -50,9 +50,8 @@ class App extends Component {
     return (
       <div>
         <div className='main-menu'>
-          {isUser
-          ? <BarLogged user={user} removeUser={removeUser} refresh={this.refresh} isHidden={isHidden} showMenu={showMenu} hideMenu={hideMenu} />
-          : <Bar loading={isLoading} err={userErr} search={searchUser} /> }
+          {isUser && <BarLogged user={user} removeUser={removeUser} refresh={this.refresh} isHidden={isHidden} showMenu={showMenu} hideMenu={hideMenu} />}
+          {!isUser && <Bar loading={isLoading} err={userErr} search={searchUser} /> }
         </div>
         <Segment className='container body'>
           <Grid padded centered>
@@ -67,7 +66,7 @@ class App extends Component {
           </Grid>
           <Footer />
         </Segment>
-        <Signature />
+          <Signature />
       </div>
     )
   }

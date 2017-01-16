@@ -8,6 +8,18 @@ body {
   background-color: #71787b;
 }
 
+.main-menu .ui.action.icon.input input {
+  width: 220px;
+  border-radius: 0px;
+}
+
+.main-menu .ui.action.icon.input input:focus {
+  width: 220px;
+  border-radius: 0px;
+  border-color: white;
+  border-right-color: white!important;
+}
+
 .main-menu .ui.container.menu {
   background-color: #3a3f41;
 }
@@ -44,8 +56,7 @@ body {
 }
 
 .ui.centered.padded.grid {
-  height: 100%;
-  min-height: 87vh;
+  min-height: calc(100vh - 125px);
 }
 
 .lyrics {
@@ -59,7 +70,7 @@ body {
 }
 
 .lyrics p {
-  max-height: 690px;
+  max-height: calc(90vh - 186px);
   width: 80%;
   margin: 0 auto;
   font-size:20px;
@@ -202,6 +213,7 @@ body {
 
 .song-info .song-details .songTitle {
   font-size: 17px;
+  max-width: 240px;
 }
 
 .main-menu .right.menu .logout-btn {
@@ -270,6 +282,7 @@ body {
 @media (max-width: 1200px) {
   #sidebar {
     width: 40%!important;
+    padding-right: 0px;
   }
 
   .song-info {
@@ -296,7 +309,7 @@ body {
   }
 
   .lyrics .lyrics-overlay {
-    width: 92%;
+    display: none;
   }
 }
 
@@ -308,9 +321,12 @@ body {
   #main-body {
     width: 100%!important;
   }
+  #main-body, .ui.centered.padded.grid .centered.row {
+    padding: 0px;
+  }
 
-  .lyrics .lyrics-overlay {
-    width: calc(95% - 14px)!important
+  .lyrics p {
+    max-height: calc(95vh - 120px);
   }
 }
 
@@ -320,24 +336,13 @@ body {
   }
 }
 
-@media (max-width: 500px) {
-  .ui.container.body {
-    min-height: 80vh;
-  }
-
-  #main-body, .ui.centered.padded.grid .centered.row {
-    padding: 0px;
-  }
-}
-
 #body-sign {
   position: absolute;
-  background-color: #f4f4f4;
   color: #a2a2a2;
-  font-family: sans-serif;
-  padding: 5px;
-  bottom: 43px;
-  left: -40px;
-  margin-bottom: 0px;
-  transform: rotate(90deg);
+  font-family: 'Dancing Script', cursive;
+  bottom: 5px;
+}
+
+#body-sign i {
+  font-size: 0.9em;
 }
