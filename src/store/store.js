@@ -4,7 +4,7 @@ import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
-const logger = createLogger({collapsed: true});
+const logger = createLogger();
 
 const DEV_MODE = localStorage.getItem('enable_devtools') === 'true'
 
