@@ -20,6 +20,8 @@ class App extends Component {
   componentWillMount() {
     const { searchUser, checkTracks } = this.props
     let username = localStorage.getItem('user')
+    const path = window.location.pathname
+    username = (path.substr(1, 3) === 'dev') ? path.split('/')[2] || username : path.split('/')[1] || username
     if(username) {
       searchUser(username)
       setInterval(()=> {
