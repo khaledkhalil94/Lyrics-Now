@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Arsenal');
+
 body {
   color: #222;
   background-color: #f4f4f4;
@@ -336,13 +338,21 @@ body {
   }
 }
 
-#body-sign {
+.footer-item {
   position: absolute;
   color: #a2a2a2;
-  font-family: 'Dancing Script', cursive;
-  bottom: 5px;
+  bottom: 6px;
 }
 
-#body-sign i {
-  font-size: 0.9em;
+.footer-item.left-item {
+  font-family: 'Dancing Script', cursive;
+}
+
+.footer-item.right-item {
+  right: 15px;
+  cursor: pointer;
+}
+
+.footer-item.right-item:hover {
+  color: #797979;
 }

@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { infoURL, recentTracksURL, lyricsURL } from '../constants'
+import { infoURL, recentTracksURL, lyricsURL, FEEDBACK_URL } from '../constants'
 import * as action from './actionCreator'
 
 export const hideMenu = () => (dispatch) => dispatch(action.hideMenu())
@@ -82,4 +82,14 @@ export const searchForUser = (username, remember=false) => (dispatch) => {
 export const removeUser = () => (dispatch) => {
   localStorage.removeItem('user')
   dispatch(action.removeUserr())
+}
+
+export const sendFeedback = (data) => (dispatch, getState) => {
+  let formData = new FormData(data);
+  formData.append('uid', getState().user.user.name)
+
+  return fetch(FEEDBACK_URL, {
+  method: "POST",
+  body: formData
+  })
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import 'closest-polyfill';
 import {render} from 'react-dom';
 import App from './components/app';
 import {Provider} from 'react-redux';

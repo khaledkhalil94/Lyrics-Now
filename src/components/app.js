@@ -4,8 +4,8 @@ import Bar from './header/HeadBar'
 import BarLogged from './header/HeadBarLogged'
 import RecentTracks from './recentTracks/RecentTracks'
 import LBody from './lyricsBody/lyricsbody'
-import Footer from './footer'
-import Signature from './sign'
+import Footer, { Sign as Signature } from './footer'
+import Feedback from './Feedback'
 import { Segment, Grid } from 'semantic-ui-react'
 import { searchForUser, nowPlaying, removeUser, checkTracks, showMenu, hideMenu } from './../actions'
 import { refreshRecentTracks } from './../actions/actionCreator'
@@ -64,6 +64,7 @@ class App extends Component {
           </Grid>
           <Footer />
           <Signature />
+          {isUser && <Feedback />}
         </Segment>
       </div>
     )

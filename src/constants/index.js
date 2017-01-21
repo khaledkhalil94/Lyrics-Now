@@ -1,6 +1,7 @@
 export const DEF_IMG = 'http://demo.joomlashine.com/joomla-templates/jsn_kido/pro/media/com_joomprofile/images/default.png'
 export const DEF_TRACK_PIC = 'http://img2-ak.lst.fm/i/u/64s/c6f59c1e5e7240a4c0d427abd71f3dbb.png'
 export const api_key = 'ef8a2cb943728b1ac275b43c9fb095ca'
+export const FEEDBACK_URL = `http://${HOST}/feedback.php`
 
 export const START_USER_SEARCH = 'START_USER_SEARCH'
 export const SEARCH_USER_SUCCESS = 'SEARCH_USER_SUCCESS'
@@ -32,7 +33,7 @@ export function recentTracksURL(username, page, limit=10, apiKey=api_key){
 export function lyricsURL(track, user){
   const title = track.name.replace(/\s/g, '_')
   const artist = track.artist.name.replace(/\s/g, '_')
-  return `http://localhost:3001/?artist=${artist}&title=${title}&user=${user}`
+  return `http://${HOST}/?artist=${artist}&title=${title}&user=${user}`
 }
 
 export function removeActiveItems(){
