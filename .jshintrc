@@ -4,9 +4,5 @@
   "esversion": 6,
   "node": true,
   "asi": true,
-  "globals": {
-    "localStorage": false,
-    "window": false,
-    "document": false
-  }
+  "-W117": true
 }
