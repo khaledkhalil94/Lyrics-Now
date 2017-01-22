@@ -17,15 +17,15 @@ class App extends Component {
     this.refresh = this.refresh.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { searchUser, checkTracks } = this.props
     const username = localStorage.getItem('user')
-    if(username) {
-      searchUser(username)
-      setInterval(()=> {
-        if(this.state.user.name) checkTracks(username)
-      }, 10000)
-    }
+    if(username) searchUser(username)
+
+    setInterval(()=> {
+      if(this.state.user.name) checkTracks(this.state.user.name)
+    }, 5000)
+
   }
 
   refresh(username){
@@ -35,7 +35,6 @@ class App extends Component {
   }
 
   componentWillReceiveProps({user, isNowPlaying}) {
-
     this.setState({ isNowPlaying: isNowPlaying})
     if(user.user) this.setState({ user: user.user })
   }
