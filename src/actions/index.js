@@ -64,7 +64,7 @@ export const checkTracks = (username) => (dispatch, getState) => {
   })
 }
 
-export const searchForUser = (username, remember=false) => (dispatch) => {
+export const searchForUser = (username) => (dispatch) => {
   dispatch(action.requestUser())
   return fetch(infoURL(username))
   .then(res => res.json())
@@ -72,7 +72,7 @@ export const searchForUser = (username, remember=false) => (dispatch) => {
     if(res.error && res.error === 6) dispatch(action.searchUserFail())
     else {
       dispatch(action.searchUserSucc(res.user))
-      if(remember) localStorage.setItem('user', res.user.name)
+      localStorage.setItem('user', res.user.name)
       dispatch(action.requestRecentTracks())
       dispatch(checkTracks(username))
     }

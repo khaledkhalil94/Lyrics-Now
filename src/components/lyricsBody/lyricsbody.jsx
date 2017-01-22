@@ -9,7 +9,7 @@ class LyricsBody extends Component {
   componentDidUpdate() {
     const element = document.querySelector('.lyrics-body .lyrics')
     const overlayElm = document.querySelector('.lyrics-overlay')
-    if(element.offsetHeight == element.scrollHeight) overlayElm.style.display = 'none'
+    if(element.offsetHeight === element.scrollHeight) overlayElm.style.display = 'none'
     else {
       overlayElm.style.display = 'block'
       element.onscroll = () => {

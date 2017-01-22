@@ -58,7 +58,7 @@ const nowPlaying = (state = initialState.nowPlaying, action) => {
       return {...state, track: {}, isNowPlaying: false}
 
     case types.REMOVE_USER:
-      return {...state, track: {}, isNowPlaying: false}
+      return initialState.nowPlaying
 
     case types.HIDE_MENU:
       return {...state, isHidden: true}
@@ -93,6 +93,8 @@ const lyricsDisplay = (state = initialState.lyricsDisplay, action) => {
     case types.LYRICS_NOT_FOUND:
       return {...state, lyrics: action.lyrics, isFetching: false}
 
+    case types.REMOVE_USER:
+      return initialState.lyricsDisplay
     default:
       return state
   }

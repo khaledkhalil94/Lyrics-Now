@@ -25,7 +25,7 @@ class Bar extends Component {
       localStorage.setItem('enable_devtools', 'true')
       window.location.replace('/')
     }
-    else search(this.state.value, true)
+    else search(this.state.value)
   }
 
   render(){
