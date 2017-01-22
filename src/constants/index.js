@@ -1,4 +1,4 @@
-const HOST = process.env.NODE_ENV === 'development' ? 'localhost:3001' : 'lyricsnow.us/server' // auto host config
+const HOST = process.env.NODE_ENV === 'development' ? 'localhost:1334' : 'lyricsnow.us/server' // auto host config
 
 export const DEF_IMG = 'http://demo.joomlashine.com/joomla-templates/jsn_kido/pro/media/com_joomprofile/images/default.png'
 export const DEF_TRACK_PIC = 'http://img2-ak.lst.fm/i/u/64s/c6f59c1e5e7240a4c0d427abd71f3dbb.png'
