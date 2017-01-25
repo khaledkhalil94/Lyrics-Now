@@ -34,8 +34,9 @@ export function recentTracksURL(username, page, limit=10, apiKey=api_key){
 }
 
 export function lyricsURL(track, user){
-  const title = track.name.replace(/\s/g, '_')
-  const artist = track.artist.name.replace(/\s/g, '_')
+  const title = encodeURIComponent(track.name.replace(/\s/g, '_'))
+  const artist = encodeURIComponent(track.artist.name.replace(/\s/g, '_'))
+
   return `http://${HOST}/?artist=${artist}&title=${title}&user=${user}`
 }
 
