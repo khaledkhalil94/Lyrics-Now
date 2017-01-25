@@ -9,6 +9,7 @@ import Feedback from './Feedback'
 import { Segment, Grid } from 'semantic-ui-react'
 import { searchForUser, nowPlaying, removeUser, checkTracks, showMenu, hideMenu } from './../actions'
 import { refreshRecentTracks } from './../actions/actionCreator'
+import { INTERVAL_TIME } from './../constants'
 
 class App extends Component {
   constructor(){
@@ -24,7 +25,7 @@ class App extends Component {
 
     setInterval(()=> {
       if(this.state.user.name) checkTracks(this.state.user.name)
-    }, 5000)
+    }, INTERVAL_TIME)
 
   }
 
