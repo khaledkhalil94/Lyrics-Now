@@ -9,5 +9,3 @@ export default () =>
     <span><Divider /></span>
   </div>
 )
-
-export const Sign = () => <span className='footer-item left-item'>Made with <Icon color='blue' name='music' /></span>

@@ -1,3 +1,5 @@
+/* Media Queries */
+
 @media (max-width: 1300px) {
   #sidebar {
     width: 40%!important;
@@ -31,6 +33,7 @@
   .lyrics .lyrics-overlay {
     display: none;
     bottom: 0px;
+    width: 97%;
   }
 }
 
@@ -54,6 +57,14 @@
     height: 85%;
     width: 100%;
   }
+
+  .main-menu .right.menu .item.hide-btn {
+    display: none;
+  }
+
+  .ui.centered.padded.grid {
+    min-height: calc(100vh - 100px);
+  }
 }
 
 @media (max-width: 1000px) and (min-height: 825px) {
@@ -65,11 +76,5 @@
 @media (max-width: 450px) {
   #main-body .halogen-loader {
     height: 80%;
-  }
-}
-
-@media (max-width: 370px) {
-  .main-menu .right.menu .logout-btn {
-    padding: 0 20px;
   }
 }

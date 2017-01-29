@@ -31,10 +31,6 @@ body {
   border-radius: 0px;
 }
 
-.ui.container.menu {
-  min-height: 60px;
-}
-
 .ui.container.body {
   min-height: calc(100vh - 60px);
   border-top: none;
@@ -56,7 +52,7 @@ body {
 }
 
 .ui.centered.padded.grid {
-  min-height: calc(100vh - 125px);
+  min-height: calc(100vh - 112px);
 }
 
 .lyrics {
@@ -70,7 +66,7 @@ body {
 }
 
 .lyrics p {
-  max-height: calc(95vh - 200px);
+  max-height: calc(95vh - 150px);
   width: 80%;
   margin: 0 auto;
   font-size:20px;
@@ -81,7 +77,7 @@ body {
 
 .lyrics .lyrics-overlay {
   bottom: 3%;
-  width: 95%;
+  width: 71%;
   align-self: flex-end;
   display: block;
   height: 100px;
@@ -201,16 +197,13 @@ body {
   display: inline-block;
   position: absolute;
   padding-left: 10px;
+  margin-top: -4px;
 }
 
 .song-info-small .song-details .songArtist {
   margin-bottom: 0px;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.song-info-small .song-details .songTitle {
   font-size: 18px;
+  font-weight: bold;
 }
 
 .artist-lastfm-page {
@@ -239,7 +232,12 @@ body {
   max-width: 240px;
 }
 
-.main-menu .right.menu .logout-btn {
+.song-info-small .song-details .songTitle {
+  max-height: 22px;
+  overflow: hidden;
+}
+
+.main-menu .right.menu .item {
   padding: 0 30px;
 }
 
@@ -255,11 +253,9 @@ body {
   padding-top: 0px;
 }
 
-
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 ::-webkit-scrollbar-track {
   background-color: #e0e1e2;
   border-top-right-radius: 15px;
@@ -267,7 +263,6 @@ body {
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
 }
-
 ::-webkit-scrollbar-thumb {
   background-color: #6b7579;
   border-top-right-radius: 15px;
@@ -275,12 +270,10 @@ body {
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
 }
-
 ::-webkit-scrollbar-button {
   background-color: #a0a0a0;
   height: 0px;
 }
-
 ::-webkit-scrollbar-corner {
   background-color: white;
 }

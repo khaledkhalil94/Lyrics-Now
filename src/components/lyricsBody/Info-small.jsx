@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 const Info = ({ img, artist, title }) =>
 (
   <div className='song-info-small'>
-    <img src={img} width='80px' alt='' />
+    <img src={img} width='50px' alt='' />
     <div className='song-details'>
       <p className='songArtist'>{artist}</p>
       <p className='songTitle'>{title}</p>

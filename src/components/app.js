@@ -4,12 +4,13 @@ import Bar from './header/HeadBar'
 import BarLogged from './header/HeadBarLogged'
 import RecentTracks from './recentTracks/RecentTracks'
 import LBody from './lyricsBody/lyricsbody'
-import Footer, { Sign as Signature } from './footer'
-import Feedback from './Feedback'
-import { Segment, Grid } from 'semantic-ui-react'
+import Footer from './footer'
+import { Segment, Grid, Icon } from 'semantic-ui-react'
 import { searchForUser, nowPlaying, removeUser, checkTracks, showMenu, hideMenu } from './../actions'
 import { refreshRecentTracks } from './../actions/actionCreator'
 import { INTERVAL_TIME } from './../constants'
+import Halogen from 'halogen'
+import Feedback from './Feedback'
 
 class App extends Component {
   constructor(){
@@ -41,7 +42,7 @@ class App extends Component {
   }
 
   render () {
-    const { searchUser, removeUser, track, isHidden, showMenu, hideMenu } = this.props
+    const { searchUser, removeUser, track, isFetching, isHidden, showMenu, hideMenu } = this.props
     const { isLoading, userErr } = this.props.user
     const { user } = this.state
     const isUser= Boolean(user.name)
@@ -55,6 +56,7 @@ class App extends Component {
           <Grid padded centered>
             <Grid.Row centered>
               <Grid.Column id='main-body' width={isHidden ? 15 : 12}>
+                {isFetching && !track.name && <Halogen.ScaleLoader className='halogen-loader' size="36px" color='#c7c7c7' />}
                 {isUser && track.name && <LBody />}
               </Grid.Column>
               { !isHidden && <Grid.Column id='sidebar' width={4}>
@@ -63,7 +65,7 @@ class App extends Component {
             </Grid.Row>
           </Grid>
           <Footer />
-          <Signature />
+          <span className='footer-item left-item'>Made with <Icon color='blue' name='music' /></span>
           {isUser && <Feedback />}
         </Segment>
       </div>
@@ -73,9 +75,9 @@ class App extends Component {
 
 function mapStateToProps({ user, nowPlaying, lyricsDisplay}){
   const { isNowPlaying, isHidden } = nowPlaying
-  const { track } = lyricsDisplay
+  const { track, isFetching } = lyricsDisplay
 
-  return { user, isNowPlaying, track, isHidden }
+  return { user, isNowPlaying, track, isFetching, isHidden }
 }
 
 function mapDispatchToProps(dispatch){
