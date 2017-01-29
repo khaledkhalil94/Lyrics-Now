@@ -70,7 +70,7 @@ body {
 }
 
 .lyrics p {
-  max-height: calc(90vh - 186px);
+  max-height: calc(95vh - 200px);
   width: 80%;
   margin: 0 auto;
   font-size:20px;
@@ -80,7 +80,8 @@ body {
 }
 
 .lyrics .lyrics-overlay {
-  width: 58%;
+  bottom: 3%;
+  width: 95%;
   align-self: flex-end;
   display: block;
   height: 100px;
@@ -118,10 +119,9 @@ body {
   right: 0px;
 }
 
-.lyrics .halogen-loader {
-  height: 72.6%;
-  width: 60%;
-  left: 30%;
+#main-body .halogen-loader {
+  height: 99%;
+  width: 97%;
   margin: auto;
   background: rgba(255, 255, 255, 0.82);
 }
@@ -188,6 +188,29 @@ body {
   line-height: 25px;
   margin-bottom: 6px;
   display: inline;
+}
+
+.song-info-small {
+  display: none;
+  padding: 5px 0 1px 3%;
+  background-color: #93adb7;
+  margin: 0 -15px 5px -15px;
+}
+
+.song-info-small .song-details {
+  display: inline-block;
+  position: absolute;
+  padding-left: 10px;
+}
+
+.song-info-small .song-details .songArtist {
+  margin-bottom: 0px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.song-info-small .song-details .songTitle {
+  font-size: 18px;
 }
 
 .artist-lastfm-page {
@@ -277,63 +300,6 @@ body {
 
 .footer i.github.icon {
   margin-right: 0px;
-}
-
-@media (max-width: 1200px) {
-  #sidebar {
-    width: 40%!important;
-    padding-right: 0px;
-  }
-
-  .song-info {
-    display: none;
-  }
-
-  #main-body {
-    width: 60%!important;
-    left: 0px;
-  }
-
-  .lyrics-body {
-    display: flex;
-    padding: 0px;
-  }
-
-  .lyrics p {
-    width: 100%;
-    margin: 0px;
-  }
-
-  .ui.container.body {
-    min-height: 90vh;
-  }
-
-  .lyrics .lyrics-overlay {
-    display: none;
-  }
-}
-
-@media (max-width: 1000px) {
-  #sidebar {
-    display: none;
-  }
-
-  #main-body {
-    width: 100%!important;
-  }
-  #main-body, .ui.centered.padded.grid .centered.row {
-    padding: 0px;
-  }
-
-  .lyrics p {
-    max-height: calc(95vh - 120px);
-  }
-}
-
-@media (max-width: 1000px) and (min-height: 825px) {
-  body {
-    overflow-y: hidden;
-  }
 }
 
 .footer-item {

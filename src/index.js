@@ -4,7 +4,8 @@ import {render} from 'react-dom';
 import App from './components/app';
 import {Provider} from 'react-redux';
 import storeStock from './store/store';
-import './main.css';
+import './css/main.css';
+import './css/mq.css';
 
 const store = storeStock();
 

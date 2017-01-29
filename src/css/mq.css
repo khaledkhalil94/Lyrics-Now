@@ -1,0 +1,75 @@
+@media (max-width: 1300px) {
+  #sidebar {
+    width: 40%!important;
+    padding-right: 0px;
+  }
+
+  .song-info {
+    display: none;
+  }
+
+  #main-body {
+    width: 60%!important;
+    left: 0px;
+  }
+
+  .lyrics-body {
+    display: flex;
+    padding: 0px;
+  }
+
+  .lyrics p {
+    width: 100%;
+    margin: 0px;
+  }
+
+  .ui.container.body {
+    min-height: 90vh;
+    padding-top: 0px;
+  }
+
+  .lyrics .lyrics-overlay {
+    display: none;
+    bottom: 0px;
+  }
+}
+
+@media (max-width: 1000px) {
+  #sidebar {
+    display: none;
+  }
+
+  #main-body {
+    width: 100%!important;
+  }
+  #main-body, .ui.centered.padded.grid .centered.row {
+    padding: 0px;
+  }
+
+  .song-info-small {
+    display: inherit;
+  }
+
+  #main-body .halogen-loader {
+    height: 85%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) and (min-height: 825px) {
+  body {
+    overflow-y: hidden;
+  }
+}
+
+@media (max-width: 450px) {
+  #main-body .halogen-loader {
+    height: 80%;
+  }
+}
+
+@media (max-width: 370px) {
+  .main-menu .right.menu .logout-btn {
+    padding: 0 20px;
+  }
+}

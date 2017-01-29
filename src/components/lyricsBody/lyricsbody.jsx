@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import {connect} from 'react-redux'
 import Lyrics from './lyricsContent'
 import Info from './Info'
+import InfoS from './Info-small'
 import {DEF_TRACK_PIC} from '../../constants'
 import Halogen from 'halogen'
 
@@ -31,12 +32,15 @@ class LyricsBody extends Component {
     const link = track.artist.url
 
     return (
-      <div className='lyrics-body'>
-        <Info img={img} title={name} artist={artist} link={link} />
-        <div className='lyrics'>
+      <div>
+        <InfoS img={img} title={name} artist={artist} />
+        <div className='lyrics-body'>
+          <Info img={img} title={name} artist={artist} link={link} />
           {isFetching && <Halogen.ScaleLoader className='halogen-loader' size="36px" color='#c7c7c7' />}
-          <div className='lyrics-overlay'></div>
-          <Lyrics lyrics={lyrics} />
+          <div className='lyrics'>
+            <div className='lyrics-overlay'></div>
+            <Lyrics lyrics={lyrics} />
+          </div>
         </div>
       </div>
     )
