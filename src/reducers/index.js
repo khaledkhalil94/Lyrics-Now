@@ -84,7 +84,7 @@ const lyricsDisplay = (state = initialState.lyricsDisplay, action) => {
       return {...state, lyrics: null, isFetching: true}
 
     case types.NOW_PLAYING_START:
-    return {...state, track: action.track, lyrics: null, isNowPlaying: true}
+    return {...state, track: action.track, lyrics: null, isNowPlaying: true, isFetching: true}
 
     case types.DISPLAY_LYRICS:
     case types.SWITCH_LYRICS:
