@@ -6,7 +6,7 @@ import createLogger from 'redux-logger';
 
 const logger = createLogger();
 
-const DEV_MODE = localStorage.getItem('enable_devtools') === 'true'
+const DEV_MODE = localStorage.getItem('enable_devtools') === 'true' || window.location.pathname === '/dev'
 
 export default function configureStore(){
   const middleWares = [thunk, reduxImmutableStateInvariant()]
