@@ -1,4 +1,4 @@
-const HOST = process.env.NODE_ENV === 'development' ? 'localhost:1334' : 'lyricsnow.us/server' // auto host config
+const HOST = process.env.NODE_ENV === 'development' ? 'localhost:1334' : 'lyricsnow.us' // auto host config
 
 export const DEF_IMG = 'http://demo.joomlashine.com/joomla-templates/jsn_kido/pro/media/com_joomprofile/images/default.png'
 export const DEF_TRACK_PIC = 'http://img2-ak.lst.fm/i/u/64s/c6f59c1e5e7240a4c0d427abd71f3dbb.png'
@@ -21,6 +21,8 @@ export const SWITCH_LYRICS = 'SWITCH_LYRICS'
 export const LYRICS_NOT_FOUND = 'LYRICS_NOT_FOUND'
 export const SHOW_MENU = 'SHOW_MENU'
 export const HIDE_MENU = 'HIDE_MENU'
+export const SHOW_RES_MENU = 'SHOW_RES_MENU'
+export const HIDE_RES_MENU = 'HIDE_RES_MENU'
 export const GET_NEXT_PAGE = 'GET_NEXT_PAGE'
 export const GET_PREV_PAGE = 'GET_PREV_PAGE'
 export const NO_LYRICS = 'Lyrics couldn\'t be found'
@@ -37,7 +39,7 @@ export function lyricsURL(track, user){
   const title = encodeURIComponent(track.name.replace(/\s/g, '_'))
   const artist = encodeURIComponent(track.artist.name.replace(/\s/g, '_'))
 
-  return `http://${HOST}/?artist=${artist}&title=${title}&user=${user}`
+  return `http://${HOST}/server/?artist=${artist}&title=${title}&user=${user}`
 }
 
 export function removeActiveItems(){
