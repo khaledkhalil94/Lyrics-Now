@@ -7,6 +7,10 @@ Powered by [Lastfm API](http://www.last.fm/api).
 
 ![http://i.imgur.com/beL8wpB.png](http://i.imgur.com/beL8wpB.png)
 
+![http://i.imgur.com/foV4Zbe.png](http://i.imgur.com/foV4Zbe.png?1)
+![http://i.imgur.com/YtFQbPX.png](http://i.imgur.com/YtFQbPX.png?1)
+
+
 ## Tech Stack
 * Front-End/View: [React](https://facebook.github.io/react/)
 * State Management: [Redux](http://redux.js.org/docs/introduction/)
@@ -23,9 +27,9 @@ If you don't have Redux-DevTools extension installed, you can add it to Chrome f
 
 ## Note
 - When you login, your username will be saved in your browser and will be used by default every time you use the app unless you logout.
-- the UI poorly supports responsive design, so I would recommend using it on bigger screens.
+- ~~the UI poorly supports responsive design, so I would recommend using it on bigger screens.~~
 
 ## Further Work
-* Lyrics fetching needs some improving.
+* Lyrics fetching needs some improving. (improved by 30% so far)
 * UI needs more adjustments.
-* Improve responsive design.
+* ~~Improve responsive design.~~ (done!)
