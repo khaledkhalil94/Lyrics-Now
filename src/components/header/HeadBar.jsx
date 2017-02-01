@@ -35,7 +35,7 @@ class Bar extends Component {
     return (
       <Menu stackable borderless inverted className='container'>
         <Menu.Item>
-          <Input onChange={this.handleChange} error={err} icon={iconLoading} action={actions} onKeyDown={this.onKey} className='icon' placeholder='Enter your lasfm username' />
+          <Input onChange={this.handleChange} error={err} icon={iconLoading} action={actions} onKeyDown={this.onKey} className='icon' placeholder='Enter your lastfm username' />
         </Menu.Item>
       </Menu>
     )
