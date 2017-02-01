@@ -1,11 +1,10 @@
 import React, { Component} from 'react'
 import {connect} from 'react-redux'
-import { switchLyrics, nextPage, prevPage } from '../../actions'
-import { Header, Segment, List, Button, Icon } from 'semantic-ui-react'
-import Halogen from 'halogen'
-import NowPlaying from './NowPlaying'
+import { switchLyrics, nextPage, prevPage, hideMenu } from '../../actions'
 import Item from './Item'
 import { removeActiveItems } from '../../constants'
+import Sv from './SmallView'
+import Nv from './NormalView'
 
 class RecentTracks extends Component {
   constructor(){
@@ -35,6 +34,8 @@ class RecentTracks extends Component {
     const { switchLyrics } = this.props
     const clickedTrack = this.state.recentTracks[num]
     switchLyrics(clickedTrack)
+
+    if(this.props.sv) this.props.hideMenu(true)
   }
 
   pageChange(next){
@@ -43,44 +44,25 @@ class RecentTracks extends Component {
     removeActiveItems()
   }
 
-
   mapItems(e, i){
     const { lyricTrack } = this.props
     return <Item track={lyricTrack} e={e} key={i} num={i} click={this.handleClick} />
   }
 
   render () {
-    const { isFetching, isNowPlaying, switchLyrics, track, page, user } = this.props
+    const { sv } = this.props
     const { recentTracks } = this.state
-    const items = recentTracks.length > 1 ? recentTracks.map(this.mapItems) : ''
-    const attached = isNowPlaying ? true : 'top'
-    return (
-      <div className='history'>
-        {isNowPlaying && <NowPlaying switchLyrics={switchLyrics} track={track} />}
-        <div className='recent-tracks'>
-          <Header as='h5' attached={attached}>
-            RECENT TRACKS {page > 1 && <small>({page})</small>}
-          </Header>
-          <Segment className='tracks' attached>
-            {isFetching && <Halogen.ScaleLoader className='halogen-loader' size="36px" color='#c7c7c7' />}
-            <List divided relaxed verticalAlign='middle' size='large'>
-              {items}
-            </List>
-          </Segment>
-          <Button.Group attached='bottom'>
-            <Button disabled={page <= 1} icon onClick={()=>this.pageChange(false)}><Icon name='left arrow' /></Button>
-            <Button disabled={!user.user} icon onClick={()=>this.pageChange(true)}><Icon name='right arrow' /></Button>
-          </Button.Group>
-        </div>
-      </div>
-    )
+    const items = recentTracks.length > 1 ? recentTracks.map(this.mapItems) : []
+
+    return sv ? <Sv items={items} pageChange={this.pageChange} />
+              : <Nv items={items} pageChange={this.pageChange} />
   }
 }
 
-function mapStateToProps({ user, tracks, nowPlaying, lyricsDisplay }){
-  const [{ recentTracks, isFetching }, { isNowPlaying, track, page }]  = [tracks, nowPlaying]
+function mapStateToProps({ tracks, nowPlaying, lyricsDisplay }){
+  const [{ recentTracks }, { isNowPlaying, track }]  = [tracks, nowPlaying]
 
-  return { user, recentTracks, isFetching, isNowPlaying, track, page,
+  return { recentTracks, isNowPlaying, track,
     lyricTrack: lyricsDisplay.track
    }
 }
@@ -88,6 +70,7 @@ function mapStateToProps({ user, tracks, nowPlaying, lyricsDisplay }){
 function mapDispatchToProps(dispatch){
   return {
     switchLyrics: (e) => dispatch(switchLyrics(e)),
+    hideMenu:     (e) => dispatch(hideMenu(e)),
     nextPage: () => dispatch(nextPage()),
     prevPage: () => dispatch(prevPage())
   }
