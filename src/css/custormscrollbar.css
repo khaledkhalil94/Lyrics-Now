@@ -1,0 +1,30 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: #e0e1e2;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #6b7579;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+::-webkit-scrollbar-button {
+  background-color: #a0a0a0;
+  height: 0px;
+}
+::-webkit-scrollbar-corner {
+  background-color: white;
+}
+
+@media (max-width: 1000px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import storeStock from './store/store';
 import './css/main.css';
 import './css/mq.css';
+import './css/custormscrollbar.css';
 
 const store = storeStock();
 
