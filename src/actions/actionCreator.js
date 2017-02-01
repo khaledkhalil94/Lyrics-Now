@@ -86,16 +86,16 @@ export function lyricsNotFound(){
   }
 }
 
-export function hideMenu(){
+export function hideMenu(res=false){
   return {
-    type: types.HIDE_MENU,
+    type: res ? types.HIDE_RES_MENU : types.HIDE_MENU,
     isHidden: true
   }
 }
 
-export function showMenu(){
+export function showMenu(res=false){
   return {
-    type: types.SHOW_MENU,
+    type: res ? types.SHOW_RES_MENU : types.SHOW_MENU,
     isHidden: false
   }
 }

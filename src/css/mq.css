@@ -1,5 +1,10 @@
 /* Media Queries */
 
+@media (min-width: 1000px) {
+  #recentTracks-SM {
+    display: none;
+  }
+}
 @media (max-width: 1300px) {
   #sidebar {
     width: 40%!important;
@@ -26,14 +31,14 @@
   }
 
   .ui.container.body {
-    min-height: 90vh;
     padding-top: 0px;
+    padding-bottom: 0px;
   }
 
   .lyrics .lyrics-overlay {
     display: none;
     bottom: 0px;
-    width: 97%;
+    width: 100%;
   }
 }
 
@@ -58,8 +63,12 @@
     width: 100%;
   }
 
-  .main-menu .right.menu .item.hide-btn {
+  .main-menu .right.menu .item.hide-btn, .main-menu .right.menu .item.refresh-btn {
     display: none;
+  }
+
+  .main-menu .right.menu .item.content-btn {
+    display: inherit;
   }
 
   .ui.centered.padded.grid {

@@ -32,7 +32,7 @@ body {
 }
 
 .ui.container.body {
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 52.63px);
   border-top: none;
   border-bottom: 0px;
 }
@@ -135,7 +135,7 @@ body {
 }
 
 .recent-tracks a.item.active {
-  background-color: #cacaca;
+  background-color: #c3dfea;
 }
 
 .now-playing .np-item {
@@ -146,6 +146,26 @@ body {
 
 .twelve.wide.column.ui.segment {
   height: 100%
+}
+
+.recent-tracks.small-view .ui.bottom.buttons {
+  margin: 0 -14px;
+}
+
+#recentTracks-SM {
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+  width: 100%;
+}
+
+.recent-tracks.small-view .tracks.small-view, #main-body .small-view .halogen-loader {
+  height: calc(100vh - 154px);
+  overflow-x: hidden;
+}
+
+.recent-tracks.small-view .ui.bottom.buttons button {
+  border-radius: 0 0 0 0;
 }
 
 .ui.large.divided.relaxed.middle.aligned.list {
@@ -159,7 +179,7 @@ body {
 }
 
 .recent-tracks .content.list.item, .now-playing .content.list.item {
-  max-width: 285px;
+  width: 85%;
 }
 
 .now-playing .ui.top.attached.header {
@@ -173,6 +193,10 @@ body {
 
 #now-playing-hide-btn {
   font-size: 13px;
+}
+
+.main-menu .right.menu .item.content-btn {
+  display: none;
 }
 
 .ui.bottom.attached.buttons {
@@ -232,7 +256,7 @@ body {
   max-width: 240px;
 }
 
-.song-info-small .song-details .songTitle {
+.song-info-small .song-details p {
   max-height: 22px;
   overflow: hidden;
 }
@@ -251,31 +275,6 @@ body {
 
 .now-playing .np-item .item .ui.list {
   padding-top: 0px;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background-color: #e0e1e2;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #6b7579;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-}
-::-webkit-scrollbar-button {
-  background-color: #a0a0a0;
-  height: 0px;
-}
-::-webkit-scrollbar-corner {
-  background-color: white;
 }
 
 .footer {

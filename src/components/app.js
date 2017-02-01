@@ -42,14 +42,14 @@ class App extends Component {
   }
 
   render () {
-    const { searchUser, removeUser, track, isFetching, isHidden, showMenu, hideMenu } = this.props
+    const { searchUser, removeUser, track, isFetching, isHidden, showMenu, hideMenu, isResHidden } = this.props
     const { isLoading, userErr } = this.props.user
     const { user } = this.state
     const isUser= Boolean(user.name)
     return (
       <div>
         <div className='main-menu'>
-          {isUser && <BarLogged user={user} removeUser={removeUser} refresh={this.refresh} isHidden={isHidden} showMenu={showMenu} hideMenu={hideMenu} />}
+          {isUser && <BarLogged user={user} removeUser={removeUser} refresh={this.refresh} isHidden={isHidden} isResHidden={isResHidden} showMenu={showMenu} hideMenu={hideMenu} />}
           {!isUser && <Bar loading={isLoading} err={userErr} search={searchUser} /> }
         </div>
         <Segment className='container body'>
@@ -73,19 +73,20 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ user, nowPlaying, lyricsDisplay}){
+function mapStateToProps({ tracks, user, nowPlaying, lyricsDisplay}){
   const { isNowPlaying, isHidden } = nowPlaying
   const { track, isFetching } = lyricsDisplay
+  const { isResHidden } = tracks
 
-  return { user, isNowPlaying, track, isFetching, isHidden }
+  return { user, isNowPlaying, track, isFetching, isHidden, isResHidden }
 }
 
 function mapDispatchToProps(dispatch){
   return {
     searchUser: (e, m) => dispatch(searchForUser(e, m)),
     removeUser: ()     => dispatch(removeUser()),
-    showMenu:   ()     => dispatch(showMenu()),
-    hideMenu:   ()     => dispatch(hideMenu()),
+    showMenu:   (e)     => dispatch(showMenu(e)),
+    hideMenu:   (e)     => dispatch(hideMenu(e)),
     nowPlaying: (e)    => dispatch(nowPlaying(e)),
     checkTracks: (e)   => dispatch(checkTracks(e)),
     requestRTracks: () => dispatch(refreshRecentTracks())

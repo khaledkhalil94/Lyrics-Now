@@ -5,6 +5,7 @@ import Info from './Info'
 import InfoS from './Info-small'
 import {DEF_TRACK_PIC} from '../../constants'
 import Halogen from 'halogen'
+import RecentTracksM from '../recentTracks/RecentTracks'
 
 class LyricsBody extends Component {
   componentDidUpdate() {
@@ -25,7 +26,7 @@ class LyricsBody extends Component {
   }
 
   render () {
-    const { track, lyrics, isFetching } = this.props
+    const { track, lyrics, isFetching, isResHidden } = this.props
     const img = track.image[2]['#text'] || track.artist.image[2]['#text'] || DEF_TRACK_PIC
     const { name } = track
     const artist = track.artist.name
@@ -34,6 +35,7 @@ class LyricsBody extends Component {
     return (
       <div>
         <InfoS img={img} title={name} artist={artist} />
+        {!isResHidden && <RecentTracksM sv />}
         <div className='lyrics-body'>
           <Info img={img} title={name} artist={artist} link={link} />
           {isFetching && <Halogen.ScaleLoader className='halogen-loader' size="36px" color='#c7c7c7' />}
@@ -47,10 +49,10 @@ class LyricsBody extends Component {
   }
 }
 
-function mapStateToProps({ lyricsDisplay }){
-  const { track, lyrics, isFetching } = lyricsDisplay
+function mapStateToProps({ tracks, lyricsDisplay }){
+  const [{isResHidden}, { track, lyrics, isFetching }] = [tracks, lyricsDisplay]
 
-  return { track, lyrics, isFetching }
+  return { track, lyrics, isFetching, isResHidden }
 }
 
 LyricsBody.propTypes = {

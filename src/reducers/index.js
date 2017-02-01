@@ -4,7 +4,7 @@ import * as types from '../constants'
 
 const initialState = {
   user: {},
-  tracks: { recentTracks: [] },
+  tracks: { recentTracks: [], isResHidden: true },
   nowPlaying: { track: {}, isNowPlaying: false, isHidden: false, page: 1 },
   lyricsDisplay: { track: {}, lyrics: null, isFetching: false }
 }
@@ -42,6 +42,13 @@ const tracks = (state = initialState.tracks, action) => {
 
     case types.REMOVE_USER:
       return {...state, recentTracks: []}
+
+    case types.SHOW_RES_MENU:
+      return {...state, isResHidden: false}
+
+    case types.HIDE_RES_MENU:
+      return {...state, isResHidden: true}
+
 
     default:
       return state

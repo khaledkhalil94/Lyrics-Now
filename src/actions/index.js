@@ -1,9 +1,11 @@
+/* eslint-disable */
+
 import fetch from 'isomorphic-fetch'
 import { infoURL, recentTracksURL, lyricsURL, FEEDBACK_URL } from '../constants'
 import * as action from './actionCreator'
 
-export const hideMenu = () => (dispatch) => dispatch(action.hideMenu())
-export const showMenu = () => (dispatch) => dispatch(action.showMenu())
+export const hideMenu = (res) => (dispatch) => dispatch(action.hideMenu(res))
+export const showMenu = (res) => (dispatch) => dispatch(action.showMenu(res))
 
 export const nextPage = () => (dispatch, getState) => {
   dispatch(action.requestRecentTracks())
@@ -50,7 +52,7 @@ export const checkTracks = (username) => (dispatch, getState) => {
 
     dispatch(action.getRecentTracks(tracks))
     // if there's a track being played atm
-    if (tracks.length === 11) {
+    if (tracks[0]['@attr']) {
       const track = tracks[0]
       if(!nowPlaying.isNowPlaying || (nowPlaying.track.name !== track.name)) {
         dispatch(action.startNowPlaying(track))
