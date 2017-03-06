@@ -82,6 +82,12 @@
   }
 }
 
+@media (max-width: 700px) {
+  .main-menu .right.menu .item {
+    padding: 0 25px;
+  }
+}
+
 @media (max-width: 450px) {
   #main-body .halogen-loader {
     height: 80%;

@@ -91,7 +91,7 @@ export const sendFeedback = (data) => (dispatch, getState) => {
   formData.append('uid', getState().user.user.name)
 
   return fetch(FEEDBACK_URL, {
-  method: "POST",
-  body: formData
+    method: "POST",
+    body: formData
   })
 }

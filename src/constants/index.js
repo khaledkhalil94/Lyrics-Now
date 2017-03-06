@@ -3,7 +3,7 @@ const HOST = process.env.NODE_ENV === 'development' ? 'localhost:1334' : 'lyrics
 export const DEF_IMG = 'http://demo.joomlashine.com/joomla-templates/jsn_kido/pro/media/com_joomprofile/images/default.png'
 export const DEF_TRACK_PIC = 'http://img2-ak.lst.fm/i/u/64s/c6f59c1e5e7240a4c0d427abd71f3dbb.png'
 export const api_key = 'ef8a2cb943728b1ac275b43c9fb095ca'
-export const FEEDBACK_URL = `http://${HOST}/feedback.php`
+export const FEEDBACK_URL = `http://${HOST}/server/feedback.php`
 export const INTERVAL_TIME = 8000
 
 export const START_USER_SEARCH = 'START_USER_SEARCH'

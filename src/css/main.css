@@ -9,12 +9,12 @@ body {
 }
 
 .main-menu .ui.action.icon.input input {
-  width: 220px;
+  width: 225px;
   border-radius: 0px;
 }
 
 .main-menu .ui.action.icon.input input:focus {
-  width: 220px;
+  width: 225px;
   border-radius: 0px;
   border-color: white;
   border-right-color: white!important;
@@ -22,6 +22,14 @@ body {
 
 .main-menu .ui.container.menu {
   background-color: #3a3f41;
+}
+
+.main-menu .ui.container.menu .right.menu .info-btn {
+  font-size: 16px;
+}
+
+.main-menu .ui.container.menu .right.menu .info-btn.new {
+  background-color: rgba(29, 165, 29, 0.27);
 }
 
 .ui.container {
@@ -279,36 +287,88 @@ body {
 
 .footer {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: #949494;
+  margin: -8px 0px;
+  font-size: 11px;
 }
 
-.footer span {
-  width: 50%;
-}
-
-.footer a {
+.footer .footer-contact {
   color: inherit;
-}
-
-.footer i.github.icon {
-  margin-right: 0px;
-}
-
-.footer-item {
-  position: absolute;
-  color: #a2a2a2;
-  bottom: 6px;
-}
-
-.footer-item.left-item {
-  font-family: 'Dancing Script', cursive;
-}
-
-.footer-item.right-item {
-  right: 15px;
   cursor: pointer;
 }
 
-.footer-item.right-item:hover {
-  color: #797979;
+.ui.modal .about {
+  text-align: center;
+}
+
+.ui.modal .about .share-btn {
+  display: flex;
+}
+
+.ui.modal .about .share-btn i.icon {
+  font-size: 1.2rem;
+}
+
+.ui.modal .about .share-btn p {
+  margin: 3px 5px;
+}
+
+.ui.modal .about h3 {
+  font-size: 18px;
+  color: grey;
+  font-weight: 700;
+}
+
+.ui.modal .about .content p.first {
+  font-size: 16px;
+}
+
+.ui.modal .about .content p.second {
+  font-size: 15px;
+}
+
+.ui.modal .about .donation a i {
+  font-size: 12px;
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+.ui.modal .content, .ui.modal.contact {
+  font-family: 'Roboto', sans-serif;
+}
+
+#about_img {
+  background: url('../components/about/utils/icon.png') no-repeat center;
+  height: 90px;
+  margin-right: 10px;
+}
+
+#paypal_icon {
+  background: url('../components/about/utils/paypal.png') no-repeat center;
+  height: 50px;
+  display: block;
+  margin: 10px auto;
+  width: 50px;
+  cursor: pointer;
+}
+
+.contact.page .follow-links {
+  text-align: center;
+}
+
+.contact.page .follow-links p {
+  font-weight: bold;
+  font-size: 15px;
+  color: #843838;
+}
+
+.contact.page .follow-links a {
+  opacity: 0.8;
+  margin: 0 3px;
+}
+
+.contact.page .follow-links a:hover {
+  opacity: 1;
 }

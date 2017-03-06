@@ -33,7 +33,7 @@ class Bar extends Component {
     const iconLoading = loading ? <Icon loading name='spinner' /> : null
     const actions = { type: 'submit', color: 'teal', icon: 'arrow right', onClick: this.handleClick }
     return (
-      <Menu stackable borderless inverted className='container'>
+      <Menu borderless inverted className='container'>
         <Menu.Item>
           <Input onChange={this.handleChange} error={err} icon={iconLoading} action={actions} onKeyDown={this.onKey} className='icon' placeholder='Enter your lastfm username' />
         </Menu.Item>
