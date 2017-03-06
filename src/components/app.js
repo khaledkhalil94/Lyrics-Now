@@ -4,13 +4,11 @@ import Bar from './header/HeadBar'
 import BarLogged from './header/HeadBarLogged'
 import RecentTracks from './recentTracks/RecentTracks'
 import LBody from './lyricsBody/lyricsbody'
-import Footer from './footer'
-import { Segment, Grid, Icon } from 'semantic-ui-react'
+import { Segment, Grid } from 'semantic-ui-react'
 import { searchForUser, nowPlaying, removeUser, checkTracks, showMenu, hideMenu } from './../actions'
 import { refreshRecentTracks } from './../actions/actionCreator'
 import { INTERVAL_TIME } from './../constants'
 import Halogen from 'halogen'
-import Feedback from './Feedback'
 
 class App extends Component {
   constructor(){
@@ -27,7 +25,6 @@ class App extends Component {
     setInterval(()=> {
       if(this.state.user.name) checkTracks(this.state.user.name)
     }, INTERVAL_TIME)
-
   }
 
   refresh(username){
@@ -64,9 +61,6 @@ class App extends Component {
               </Grid.Column>}
             </Grid.Row>
           </Grid>
-          <Footer />
-          <span className='footer-item left-item'>Made with <Icon color='blue' name='music' /></span>
-          {isUser && <Feedback />}
         </Segment>
       </div>
     )
