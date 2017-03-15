@@ -5,7 +5,7 @@ import BarLogged from './header/HeadBarLogged'
 import RecentTracks from './recentTracks/RecentTracks'
 import LBody from './lyricsBody/lyricsbody'
 import { Segment, Grid } from 'semantic-ui-react'
-import { searchForUser, nowPlaying, removeUser, checkTracks, showMenu, hideMenu } from './../actions'
+import { searchForUser, nowPlaying, removeUser, getTracks, showMenu, hideMenu, checkNewTracks } from './../actions'
 import { refreshRecentTracks } from './../actions/actionCreator'
 import { INTERVAL_TIME } from './../constants'
 import Halogen from 'halogen'
@@ -18,19 +18,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { searchUser, checkTracks } = this.props
+    const { searchUser, checkNewTracks } = this.props
     const username = localStorage.getItem('user')
     if(username) searchUser(username)
 
     setInterval(()=> {
-      if(this.state.user.name) checkTracks(this.state.user.name)
+      if(this.state.user.name) checkNewTracks()
     }, INTERVAL_TIME)
   }
 
   refresh(username){
-    const { checkTracks, requestRTracks } = this.props
+    const { getTracks, requestRTracks } = this.props
     requestRTracks()
-    checkTracks(username)
+    getTracks(username)
   }
 
   componentWillReceiveProps({user, isNowPlaying}) {
@@ -79,10 +79,11 @@ function mapDispatchToProps(dispatch){
   return {
     searchUser: (e, m) => dispatch(searchForUser(e, m)),
     removeUser: ()     => dispatch(removeUser()),
+    checkNewTracks: ()     => dispatch(checkNewTracks()),
     showMenu:   (e)     => dispatch(showMenu(e)),
     hideMenu:   (e)     => dispatch(hideMenu(e)),
     nowPlaying: (e)    => dispatch(nowPlaying(e)),
-    checkTracks: (e)   => dispatch(checkTracks(e)),
+    getTracks: (e)   => dispatch(getTracks(e)),
     requestRTracks: () => dispatch(refreshRecentTracks())
   }
 }

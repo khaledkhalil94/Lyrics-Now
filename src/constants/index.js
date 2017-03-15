@@ -46,3 +46,7 @@ export function removeActiveItems(){
   const nodes = document.querySelector('.recent-tracks a.active.item')
   if(nodes) nodes.className = 'item'
 }
+
+export function newTracksReq(username){
+  return `http://ws.audioscrobbler.com/2.0/?user=${username}&method=user.getRecentTracks&api_key=${api_key}&format=json&limit=2`
+}

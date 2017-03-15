@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import fetch from 'isomorphic-fetch'
-import { infoURL, recentTracksURL, lyricsURL, FEEDBACK_URL } from '../constants'
+import { infoURL, recentTracksURL, lyricsURL, FEEDBACK_URL, newTracksReq } from '../constants'
 import * as action from './actionCreator'
 
 export const hideMenu = (res) => (dispatch) => dispatch(action.hideMenu(res))
@@ -11,7 +11,7 @@ export const nextPage = () => (dispatch, getState) => {
   dispatch(action.requestRecentTracks())
   const { nowPlaying, user } = getState()
   dispatch(action.nextPage(nowPlaying.page))
-  dispatch(checkTracks(user.user.name))
+  dispatch(getTracks(user.user.name))
 }
 
 export const prevPage = () => (dispatch, getState) => {
@@ -19,7 +19,7 @@ export const prevPage = () => (dispatch, getState) => {
   if(nowPlaying.page <= 1) return
   dispatch(action.requestRecentTracks())
   dispatch(action.prevPage(nowPlaying.page))
-  dispatch(checkTracks(user.user.name))
+  dispatch(getTracks(user.user.name))
 }
 
 export const switchLyrics = (track) => (dispatch, getState) => {
@@ -42,7 +42,26 @@ const getLyrics = (track, user) => (dispatch) => {
   })
 }
 
-export const checkTracks = (username) => (dispatch, getState) => {
+export const checkNewTracks = () => (dispatch, getState) => {
+  const { name } = getState().user.user
+  const tracks = getState().tracks.recentTracks
+  const lastTrack = (tracks && tracks[0].date) ? tracks[0] : tracks[1].date
+  const nowPlayingTrack = getState().nowPlaying.track || false
+
+  return fetch(newTracksReq(name))
+    .then(res => res.json())
+    .then(res => {
+      const lastNewTrack = res.recenttracks.track[0].date ? res.recenttracks.track[0] : res.recenttracks.track[1].date
+      const nowPlayingN = res.recenttracks.track[0]['@attr'] ? res.recenttracks.track[0] : false
+      if(nowPlayingTrack.name !== nowPlayingN.name){
+        dispatch(getTracks(name))
+      } else if(lastTrack.uts !== lastNewTrack.uts){
+        dispatch(getTracks(name))
+      }
+    })
+}
+
+export const getTracks = (username) => (dispatch, getState) => {
   const { page } = getState().nowPlaying
   return fetch(recentTracksURL(username, page))
   .then(res => res.json())
@@ -76,7 +95,7 @@ export const searchForUser = (username) => (dispatch) => {
       dispatch(action.searchUserSucc(res.user))
       localStorage.setItem('user', res.user.name)
       dispatch(action.requestRecentTracks())
-      dispatch(checkTracks(username))
+      dispatch(getTracks(username))
     }
   })
 }
