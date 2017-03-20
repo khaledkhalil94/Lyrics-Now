@@ -1,0 +1,52 @@
+.main-page.not-logged {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.main-page.not-logged .segment {
+  margin-top: -10%;
+  padding-bottom: 15px;
+}
+
+.main-page.not-logged .segment .app-desc {
+  margin-top: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+.main-page.not-logged .segment .header .image {
+  margin-right: 20px;
+}
+
+.main-page.not-logged .segment .input {
+  margin: 10px 0;
+}
+
+.main-page.not-logged .segment .input .lastfm.icon{
+  color: red;
+}
+
+.main-page.not-logged .segment .input input {
+  width: 230px;
+}
+
+.main-page.not-logged .segment .negative.message {
+  width: 78%;
+  margin: 0 auto;
+}
+
+.main-page.not-logged .segment .input button {
+  background-color: #5996af;
+  color: white;
+}
+
+.main-page.not-logged .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #949494;
+  font-size: 11px;
+}

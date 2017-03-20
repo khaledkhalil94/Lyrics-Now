@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Bar from './header/HeadBar'
-import BarLogged from './header/HeadBarLogged'
+import LoginPage from './loginPage'
+import BarLogged from './header/'
 import RecentTracks from './recentTracks/RecentTracks'
 import LBody from './lyricsBody/lyricsbody'
 import { Segment, Grid } from 'semantic-ui-react'
@@ -13,7 +13,7 @@ import Halogen from 'halogen'
 class App extends Component {
   constructor(){
     super()
-    this.state = { user: {}, isNowPlaying: false }
+    this.state = { user: {} }
     this.refresh = this.refresh.bind(this)
   }
 
@@ -33,21 +33,18 @@ class App extends Component {
     getTracks(username)
   }
 
-  componentWillReceiveProps({user, isNowPlaying}) {
-    this.setState({ isNowPlaying: isNowPlaying})
+  componentWillReceiveProps({user}) {
     if(user.user) this.setState({ user: user.user })
   }
 
   render () {
-    const { searchUser, removeUser, track, isFetching, isHidden, showMenu, hideMenu, isResHidden } = this.props
-    const { isLoading, userErr } = this.props.user
+    const { removeUser, track, isFetching, isHidden, showMenu, hideMenu, isResHidden } = this.props
     const { user } = this.state
     const isUser= Boolean(user.name)
-    return (
+    return !isUser ? <LoginPage /> : (
       <div>
         <div className='main-menu'>
-          {isUser && <BarLogged user={user} removeUser={removeUser} refresh={this.refresh} isHidden={isHidden} isResHidden={isResHidden} showMenu={showMenu} hideMenu={hideMenu} />}
-          {!isUser && <Bar loading={isLoading} err={userErr} search={searchUser} /> }
+          <BarLogged user={user} removeUser={removeUser} refresh={this.refresh} isHidden={isHidden} isResHidden={isResHidden} showMenu={showMenu} hideMenu={hideMenu} />
         </div>
         <Segment className='container body'>
           <Grid padded centered>
@@ -77,7 +74,7 @@ function mapStateToProps({ tracks, user, nowPlaying, lyricsDisplay}){
 
 function mapDispatchToProps(dispatch){
   return {
-    searchUser: (e, m) => dispatch(searchForUser(e, m)),
+    searchUser: (e) => dispatch(searchForUser(e)),
     removeUser: ()     => dispatch(removeUser()),
     checkNewTracks: ()     => dispatch(checkNewTracks()),
     showMenu:   (e)     => dispatch(showMenu(e)),
