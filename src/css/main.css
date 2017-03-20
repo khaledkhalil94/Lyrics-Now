@@ -285,7 +285,7 @@ body {
   padding-top: 0px;
 }
 
-.footer {
+.about .footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -294,7 +294,7 @@ body {
   font-size: 11px;
 }
 
-.footer .footer-contact {
+.about .footer .footer-contact {
   color: inherit;
   cursor: pointer;
 }

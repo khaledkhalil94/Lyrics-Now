@@ -63,7 +63,7 @@
     width: 100%;
   }
 
-  .main-menu .right.menu .item.hide-btn, .main-menu .right.menu .item.refresh-btn {
+  .main-menu .right.menu .item.hide-btn {
     display: none;
   }
 
