@@ -5,8 +5,7 @@ import BarLogged from './header/'
 import RecentTracks from './recentTracks/RecentTracks'
 import LBody from './lyricsBody/lyricsbody'
 import { Segment, Grid } from 'semantic-ui-react'
-import { searchForUser, nowPlaying, removeUser, getTracks, showMenu, hideMenu, checkNewTracks } from './../actions'
-import { refreshRecentTracks } from './../actions/actionCreator'
+import { searchForUser, checkNewTracks } from './../actions'
 import { INTERVAL_TIME } from './../constants'
 import Halogen from 'halogen'
 
@@ -14,7 +13,6 @@ class App extends Component {
   constructor(){
     super()
     this.state = { user: {} }
-    this.refresh = this.refresh.bind(this)
   }
 
   componentDidMount() {
@@ -27,24 +25,18 @@ class App extends Component {
     }, INTERVAL_TIME)
   }
 
-  refresh(username){
-    const { getTracks, requestRTracks } = this.props
-    requestRTracks()
-    getTracks(username)
-  }
-
   componentWillReceiveProps({user}) {
     if(user.user) this.setState({ user: user.user })
   }
 
   render () {
-    const { removeUser, track, isFetching, isHidden, showMenu, hideMenu, isResHidden } = this.props
+    const { track, isFetching, isHidden } = this.props
     const { user } = this.state
     const isUser= Boolean(user.name)
     return !isUser ? <LoginPage /> : (
       <div>
         <div className='main-menu'>
-          <BarLogged user={user} removeUser={removeUser} refresh={this.refresh} isHidden={isHidden} isResHidden={isResHidden} showMenu={showMenu} hideMenu={hideMenu} />
+          <BarLogged />
         </div>
         <Segment className='container body'>
           <Grid padded centered>
@@ -64,24 +56,17 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ tracks, user, nowPlaying, lyricsDisplay}){
-  const { isNowPlaying, isHidden } = nowPlaying
+function mapStateToProps({ user, lyricsDisplay, nowPlaying}){
+  const { isHidden } = nowPlaying
   const { track, isFetching } = lyricsDisplay
-  const { isResHidden } = tracks
 
-  return { user, isNowPlaying, track, isFetching, isHidden, isResHidden }
+  return { user, track, isFetching, isHidden }
 }
 
 function mapDispatchToProps(dispatch){
   return {
     searchUser: (e) => dispatch(searchForUser(e)),
-    removeUser: ()     => dispatch(removeUser()),
-    checkNewTracks: ()     => dispatch(checkNewTracks()),
-    showMenu:   (e)     => dispatch(showMenu(e)),
-    hideMenu:   (e)     => dispatch(hideMenu(e)),
-    nowPlaying: (e)    => dispatch(nowPlaying(e)),
-    getTracks: (e)   => dispatch(getTracks(e)),
-    requestRTracks: () => dispatch(refreshRecentTracks())
+    checkNewTracks: ()     => dispatch(checkNewTracks())
   }
 }
 
